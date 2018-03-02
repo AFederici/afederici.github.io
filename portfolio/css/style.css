@@ -41,6 +41,11 @@ a {
   font-weight: bold;
 }
 
+hr {
+  width: 95%;
+  max-width: 800px;
+}
+
 /* --------------------------------
 
 Portfolio Navigation
@@ -416,7 +421,7 @@ Portfolio Projects
   background-image: url(../img/photo-4.jpeg);
 }
 .cd-3d-portfolio .projects .row > li.project-5 .project-image::before {
-  background-image: url(../img/photo-5.jpeg);
+  background-image: url(../img/photo-5.jpg);
 }
 .cd-3d-portfolio .projects .row > li.project-6 .project-image::before {
   background-image: url(../img/photo-6.jpg);
@@ -460,6 +465,7 @@ Portfolio Projects
   font-size: 2.2rem;
   font-weight: bold;
   font-family: "Lora", serif;
+  text-shadow: 2px 2px 4px #000000;
 }
 .cd-3d-portfolio .projects .project-content {
   position: absolute;
