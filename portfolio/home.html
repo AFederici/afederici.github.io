@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Alexander(AJ) Federici">
+    <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--
+    <script>
+
+    var lastScrollTop = 3;
+    $(document).on('scroll', function () {
+    var st = $(this).scrollTop();
+    if (st > lastScrollTop) {
+        $('#showHide_hd').slideUp(500);
+    } else {
+        $('#showHide_hd').slideDown(500);
+    }
+    lastScrollTop = st;
+});
+
+    </script>
+    -->
+    <script>
+    $('a').click(function(event){
+  event.preventDefault();
+});
+    </script>
+    <link rel="stylesheet" href="css/hstyle.css">
+    <title>Personal WebSite</title>
+  </head>
+  <body>
+
+    <!--
+    <div id="showHide_hd">
+    <nav>
+      <ul>
+        <li><a href="index.html" class = "active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Resume</a></li>
+        <li><a href="#">Games</a></li>
+        <li><a href="#">Hobbies</a></li>
+        <li><a href="form.php">Contact</a></li>
+      </ul>
+    </nav>
+      </div>
+    -->
+    <div class = 'wr'>
+    <a href="index.html" class="btn hvr-sweep-to-right">Continue To My Site</a>
+
+  </div>
+    <div class="box">
+      <img src="img/Senior 5.jpg" alt="" class="box-img">
+      <h1>AJ Federici</h1>
+      <h5>Student - Developer - Adventurer</h5>
+      <p>I am currently senior at the Illinois Mathematics and Science Academy in Aurora, Illinois.  This is my personal website that I plan on using as a showcase for the various projects that I take on, ranging from machine learning to financial tools.</p>
+      <ul>
+        <li class = "fb"><a href="https://www.facebook.com/federiciaj"><i aria-hidden="true"><img src = "img/fb.png" ></i></a></li>
+        <li class = "gh"><a href="https://github.com/AFederici"><i aria-hidden="true"><img src = "img/git.png" ></i></a></li>
+        <li class = "li"><a href="https://www.linkedin.com/in/aj-federici-76b608152/"><i aria-hidden="true"><img src = "img/linkedin.png" ></i></a></li>
+      </ul>
+    </div>
+</body>
+</html>
