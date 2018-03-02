@@ -25,6 +25,22 @@ a {
   text-decoration: none;
 }
 
+.pseudolink:hover {
+  color: #327F89;
+}
+
+.pseudolink2 {
+  cursor: pointer;
+  color: blue;
+}
+
+.jv {
+
+  margin: 1em auto;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
 /* --------------------------------
 
 Portfolio Navigation
@@ -361,7 +377,7 @@ Portfolio Projects
   /* this is the project background image */
   z-index: 1;
   height: 240%;
-  background-color: #201017;
+  background-color: black;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -463,10 +479,10 @@ Portfolio Projects
   transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1);
 }
 .cd-3d-portfolio .projects .project-content p {
-  width: 90%;
+  width: 95%;
   max-width: 800px;
-  margin: 2em auto;
-  line-height: 1.6;
+  margin: 1em auto;
+  line-height: 1.5;
   color: #667292;
 }
 .cd-3d-portfolio .projects.project-has-transition .row > li {
