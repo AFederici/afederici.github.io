@@ -46,6 +46,51 @@ hr {
   max-width: 800px;
 }
 
+canvas {
+    position: absolute;
+    /* Use calc to make sure that browser without transform support
+     * (that therefore also dont support calc) don't
+     * actually move your elements. */
+    left: calc(50%);
+    /* Don't forget to prefix. */
+    transform: translate(-50%, -100%);
+}
+.canvas-like1{
+  position: absolute;
+  /* Use calc to make sure that browser without transform support
+   * (that therefore also dont support calc) don't
+   * actually move your elements. */
+  left: calc(35.2%);
+  top: calc(20%);
+  /* Don't forget to prefix. */
+  transform: translate(-50%, -120%);
+}
+
+.canvas-like2{
+  position: absolute;
+  /* Use calc to make sure that browser without transform support
+   * (that therefore also dont support calc) don't
+   * actually move your elements. */
+  left: calc(39%);
+  top: calc(20%);
+  /* Don't forget to prefix. */
+  transform: translate(-50%, -120%);
+}
+
+.canvas-like3{
+  position: absolute;
+  /* Use calc to make sure that browser without transform support
+   * (that therefore also dont support calc) don't
+   * actually move your elements. */
+  left: calc(70%);
+  top: calc(20%);
+  /* Don't forget to prefix. */
+  transform: translate(-50%, -120%);
+}
+
+.canvas-text{
+    margin-top:38em;
+}
 /* --------------------------------
 
 Portfolio Navigation

@@ -16,10 +16,10 @@ body{
   padding:0 20px;
 }
 .wr{
-  float: none;
-  text-align: center;
-  margin-top: 250px;
-  margin-bottom: 10px;
+
+ top: 30%;
+ right: 50%; /* set right, not left */ /* width is percentage of parent */
+ transform: translate(0, -10%);
 }
 
 .jv {
@@ -30,6 +30,17 @@ body{
 }
 
 /*
+
+.wr{
+
+  float: none;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 10px;
+}
+
+
+
 nav{
   position: fixed;
   top: 0;
