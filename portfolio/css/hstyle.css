@@ -15,11 +15,15 @@ body{
   text-align:center;
   padding:0 20px;
 }
+
 .wr{
 
- top: 30%;
- right: 50%; /* set right, not left */ /* width is percentage of parent */
- transform: translate(0, -10%);
+  float: none;
+  text-align: center;
+  margin-top: 23%;
+  margin-bottom: 10px;
+  font-family: 'Century Gothic',sans-serif;
+
 }
 
 .jv {
@@ -31,12 +35,13 @@ body{
 
 /*
 
+font-family: 'Century Gothic',sans-serif;
+
 .wr{
 
-  float: none;
-  text-align: center;
-  margin-top: 5%;
-  margin-bottom: 10px;
+top: 30%;
+right: 50%;
+transform: translate(-50%, -200%);
 }
 
 

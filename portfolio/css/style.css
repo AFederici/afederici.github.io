@@ -63,7 +63,7 @@ canvas {
   left: calc(35.2%);
   top: calc(20%);
   /* Don't forget to prefix. */
-  transform: translate(-50%, -120%);
+  transform: translate(-220%, -180%);
 }
 
 .canvas-like2{
@@ -71,10 +71,10 @@ canvas {
   /* Use calc to make sure that browser without transform support
    * (that therefore also dont support calc) don't
    * actually move your elements. */
-  left: calc(39%);
+  left: calc(42.2%);
   top: calc(20%);
   /* Don't forget to prefix. */
-  transform: translate(-50%, -120%);
+  transform: translate(-180%, -180%);
 }
 
 .canvas-like3{
@@ -82,10 +82,10 @@ canvas {
   /* Use calc to make sure that browser without transform support
    * (that therefore also dont support calc) don't
    * actually move your elements. */
-  left: calc(70%);
+  left: calc(78.2%);
   top: calc(20%);
   /* Don't forget to prefix. */
-  transform: translate(-50%, -120%);
+  transform: translate(-50%, -180%);
 }
 
 .canvas-text{
