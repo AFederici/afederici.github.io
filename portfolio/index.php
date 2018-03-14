@@ -1,4 +1,63 @@
-<!doctype html>
+<?php
+
+//check for submit
+$msg = "none";
+$name = "";
+$subj = "";
+$email = "";
+
+		if(filter_has_var(INPUT_POST, 'submit')){
+			//get form database
+			$name = htmlspecialchars($_POST['name']);
+			$email = htmlspecialchars($_POST['email']);
+			$subj = htmlspecialchars($_POST['subj']);
+			$message = htmlspecialchars($_POST['message']);
+			//check required
+			if(!empty($email) && !empty($name) && !empty($message)){
+				//passed
+				if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
+					//failed
+					$msg = "Please use a valid email";
+					$email = "";
+					$msgClass = 'alert-danger';
+				}
+				else{
+					//passed
+					$toEmail = 'alexanderfederici@hotmail.com';
+					$subject = 'Website form - ' . $subj . " from " . $name;
+					$body = '<h2>Conctact Request</h2>
+						<h4>Name</h4><p>' .$name. '</p>
+						<h4>Email</h4><p>' .$email. '</p>
+						<h4>Message</h4><p>' .$message. '</p>
+						';
+
+					//email header
+					$headers = "MIME-Version: 1.0" . "\r\n";
+					$headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
+
+					$headers .= "From: " .$name.  "<".$email.">" . "\r\n";
+
+					if(mail($toEmail, $subject, $body, $headers)){
+							//email sent
+							$msg = "Your email has been sent";
+							$msgClass = 'alert-success';
+					} else{
+						//failed
+						$msg = "Your email was not sent";
+						$msgClass = 'alert-danger';
+					}
+
+				}
+			} else{
+				//failed
+				$msg = "Please fill in all of the fields";
+				$msgClass = 'alert-danger';
+			}
+		}
+
+ ?>
+
+<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
 	<meta charset="utf-8">
@@ -22,6 +81,27 @@
 				<li><a href="#0">ML Projects</a></li>
 				<li><a href="#0">Finance Projects</a></li>
 			</ul>
+
+										<?php if($msg == "Your email has been sent"): ?>
+											 <center>
+											 <br>
+									 	<div class = "alert2 <?php echo $msgClass; ?>">
+
+										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+										<?php echo $msg; ?></div>
+										</center>
+
+										<?php elseif($msg == "none"): ?>
+
+										<?php elseif($msg != ''): ?>
+											 <center>
+											 <br>
+									 	<div class = "alert <?php echo $msgClass; ?>">
+
+										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+										<?php echo $msg; ?></div>
+										</center>
+										<?php endif; ?>
 		</div>
 	</nav> <!-- .cd-3d-portfolio-navigation -->
 
@@ -37,6 +117,8 @@
 
 					<div class="project-content">
 						<div>
+						<br>
+						<br>
 							<p>
 								Hey! My name is AJ Federici and this is the fun part of my website where I intend to showcase different projects that I am working on.
 							</p>
@@ -62,6 +144,8 @@
 								This is hands down the most cutting edge and interesting topic in my opinion.  I have some experience working with neural networks from a summer I spent at MIT working on computer vision, voice recognition, and natural language processing.  Here, my team placed 2nd against highschoolers across the country, competing for the best autonomous cognitive assistant.
 								Currently, I am hopin to develop an AI to not beat any old game, but the Tower Defense game that I am designing currently.
 							</p>
+							<br>
+							<br>
 						</div>
 					</div> <!-- .project-content -->
 
@@ -343,13 +427,12 @@
 								<br />
 							</p>
 							<p>
-							<!-- ***NEXT need to improve the formatting using bootstrap and also need to write PHP form for this -->
 							<center>
-							<form class = "contact-form" action = "contactform.php" method = "post">
-								<input type = "text" name = "name" placeholder="Full Name" />
-								<input type = "text" name = "mail" placeholder="Your E-mail" />
-								<input type = "text" name = "subject" placeholder="Subject" />
-								<textarea name="message" rows="8" cols="80" placeholder = "Enter your message here"></textarea>
+							<form class = "contact-form" action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
+								<input type = "text" name = "name" placeholder="Full Name" value = "<?php echo htmlspecialchars($name); ?>"/>
+								<input type = "text" name = "email" placeholder="Your E-mail" value = "<?php echo htmlspecialchars($email); ?>"/>
+								<input type = "text" name = "subj" placeholder="Subject" value = "<?php echo htmlspecialchars($subj); ?>"/>
+								<textarea name="message" rows="8" cols="80" placeholder = "Enter your message here" value = "<?php echo htmlspecialchars($message); ?>"></textarea>
 								<br />
 								<button type="submit" name = "submit" class = "button-blue button-extra"> SEND </button>
 							</form>

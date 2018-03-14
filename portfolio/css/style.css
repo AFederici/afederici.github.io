@@ -46,6 +46,141 @@ hr {
   max-width: 800px;
 }
 
+.form-thing{
+  opacity: 0;
+  -webkit-transform: translateX(25%);
+      -ms-transform: translateX(25%);
+          transform: translateX(25%);
+  -webkit-transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1);
+  transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1);
+}
+
+/* The alert message box */
+.alert {
+	width: 60%;
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.alert2 {
+	width: 60%;
+    padding: 20px;
+    background-color: #299931; /* Green */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
+$blue: #4784AD;
+
+
+form {
+  margin:2px 0 20px 10px;
+  width: 70%;
+  max-width: 800px;
+  display: block;
+  margin-bottom: 1%;
+  padding: 2rem;
+  background: #f9f9f9;
+  color: #2f2f2f;
+  min-width: 9rem;
+  box-sizing: border-box;
+}
+
+input, textarea {
+  margin:2px 0 20px 10px;
+  width: 70%;
+  max-width: 800px;
+  display: block;
+  margin-bottom: 1%;
+
+  font-family: sans-serif;
+  padding: 2rem;
+  background: #E6E6E6;
+  color: #2f2f2f;
+  box-sizing: border-box;
+
+  border: none;
+
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  background: darken(#f9f9f9, 10%);
+  color: darken(#f9f9f9, 50%);
+
+  &[type=submit] {
+    background: $green;
+    color: #fff;
+    width: auto;
+    float: right;
+  }
+
+  &::placeholder {
+    color: darken(#f9f9f9, 50%);
+  }
+
+  &.error {
+    background: $red;
+    color: #fff;
+    &::placeholder {
+      color: darken($red, 60%);
+    }
+  }
+}
+textarea {
+  background: #E6E6E6;
+  color: #2f2f2f;
+  box-sizing: border-box;
+  height: 10rem;
+
+  margin-bottom: 1%;
+}
+.captcha {
+  float:left;
+  input {
+    float: right;
+  }
+  input[name=question] {
+    width: 4rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    text-align: right;
+    padding-right: 0;
+  }
+  [name=captcha] {
+    width: 5rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 0.5rem;
+    &::placeholder {
+      text-align: center;
+    }
+  }
+}
+
+
+.button-extra{
+  width: 15%;
+  max-width: 800px;
+
+}
 .button-blue {
   position: relative;
   display: inline-block;
