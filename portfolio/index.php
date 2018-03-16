@@ -329,35 +329,46 @@ $email = "";
 				<div class="project-wrapper">
 					<div class="project-image">
 						<div class="project-title">
-							<h2>Project 3</h2>
+							<h2>Facial Recognition</h2>
 						</div>
 					</div> <!-- .project-image -->
 
 					<div class="project-content">
 						<div>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
+								During the summer before my senior year in highschool, I worked on a capstone project at MIT for the Amazon Alexa, implementing Neural networks for facial recognition, voice recognition, and natural language processing.  The slightly unfinished project
+								can be found under my GitHub under the title numberWon.  This section is going to be dedicated to the facial recognition portion.
+							</p>
+							<hr />
+							<p>
+								<img src = "img/facerec1.png" />
+							</p>
+							<p>
+								As you can tell from the code above, I am creating objects of both the FaceRec and Database classes.  The Database class is simply just an implementation of dictionaries in a way that they can be stored, accessed, and saved in a wide array of formats.  For example, data about images, the images themselves, and even objects get stored in the database across all of the different projects from Facial Recognition to a reddit news scraper.
+								The FaceRec class is more complicated and relies on pretrained models (dlib) for feature detection.  Throughout my time on the project I wrote many neural networks, but I chose to go with a library for my final project just because it simply would've taken to long to go from a 2/3 layer NN to a 20+ layer one.  On top of this, it requires an abundance of data (faces), which I did not have access to.
+
+								Now, to get into what is happening in the screenshot above.  The database starts as empty since no pre-existing one gets loaded in, and so when the function name_faces_from_picture gets called, it finds all of the faces in the current picture and sets their names and data as new values.  As you can see, it recognized that a face was present but asked for my name since it couldn't find any information on me in the database.  Furthermore, the 1 that gets printed out is the smallst euclidean distance between the face found and any other faces stored.  1 is the default value, and so it makes sense that it was returned as there were no faces in the database to be compared to. If the database was pre-loaded in, it would try to match any found faces to pre-exisitng ones, which we see in the next screenshot.
+							</p>
+							<hr />
+							<p>
+								<img src = "img/facerec2.png" />
+							</p>
+							<br />
+							<p>
+								Now, after we run the same code again, there is a face stored in the database from already running the code once.  This time, the program recognized who I am from the previous data it has on me.  This is possible by taking the smallest euclidean distance between the important features of a picture (eyes, nose, mouth) less than a certain threshold so that two faces don't automatically match if they are the only two available.
+								This program works even when its dark!
 							</p>
 
+							<hr />
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
+								<img src = "img/whispers.png" />
+							</p>
+							<p>
+
+								Finally, sort of in a different direction is an algorithm known as the 'whispers' or 'chinese-whispers' program that is useful for clustering.  This is extremely useful and can be seen as a current application within the field of facial recognition.  On the iphone, the photos app sorts photos by who is in them, which is essentially what running a whispers algorithm on image data will return.
+								The premise of this algorithm is two cluster data into distinct groups.  Each image in our case can be thought of a node, or a point in space.  Each point is connected to specific other points (not all!) based on a euclidean distance thats within a certain threshold.  Then, nodes are randomly chosen and its weighted edges are added up.  Instead of counting up how many of each other kind of node the node in question is attached to, we will count up some sort of weighted value for each kind of node based on proximity.  In other words, if the node in question is very close to two nodes of one kind, and further from two nodes of another kind but still connected, the node in question will be more similar to the first group.  Then, the node will then become a part of the group it is most similar to and this process will continue until the number of groups converges, resulting in the truly distinctive groupings.  Above is a visiaulization of sorts.
 							</p>
 
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
 						</div>
 					</div> <!-- .project-content -->
 
@@ -369,13 +380,9 @@ $email = "";
 				<div class="project-wrapper">
 					<div class="project-image">
 						<div class="project-title">
-							<h2>Project 4</h2>
+							<h2>Trading Bot</h2>
 						</div>
 					</div> <!-- .project-image -->
-
-
-					<!-- .***Next task is to start on something for this, put it on github, and begin a description
-										of what it is currently and what the plans are to come-->
 
 					<div class="project-content">
 						<div>
@@ -515,7 +522,7 @@ $email = "";
 				<div class="project-wrapper">
 					<div class="project-image">
 						<div class="project-title">
-							<h2>Project 3</h2>
+							<h2>Tower Defense AI</h2>
 						</div>
 					</div> <!-- .project-image -->
 
@@ -526,27 +533,8 @@ $email = "";
 
 
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
+									My goal for this upcoming project is to write an AI to master not any old game, but a Tower Defense game that I am currently a part of a team of developers for making.  However the game itself is still in its earlier stages and so this project will most likely not take fruition for a while to come.
 
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
 							</p>
 						</div>
 					</div> <!-- .project-content -->
@@ -559,34 +547,14 @@ $email = "";
 				<div class="project-wrapper">
 					<div class="project-image">
 						<div class="project-title">
-							<h2>Blah</h2>
+							<h2>Camelot.ai</h2>
 						</div>
 					</div> <!-- .project-image -->
 
 					<div class="project-content">
 						<div>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
+								https://camelot.ai/ - more content to come regarding results and code for different challenges that I compete in
 							</p>
 						</div>
 					</div> <!-- .project-content -->
@@ -636,34 +604,14 @@ $email = "";
 				<div class="project-wrapper">
 					<div class="project-image">
 						<div class="project-title">
-							<h2>Project 2</h2>
+							<h2>TBD</h2>
 						</div>
 					</div> <!-- .project-image -->
 
 					<div class="project-content">
 						<div>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
+								Keep an eye out for an upcoming project in this category!
 							</p>
 						</div>
 					</div> <!-- .project-content -->
@@ -676,34 +624,14 @@ $email = "";
 				<div class="project-wrapper">
 					<div class="project-image">
 						<div class="project-title">
-							<h2>Project 3</h2>
+							<h2>TBD</h2>
 						</div>
 					</div> <!-- .project-image -->
 
 					<div class="project-content">
 						<div>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
+								Keep an eye out for an upcoming project in this category!
 							</p>
 						</div>
 					</div> <!-- .project-content -->
@@ -716,34 +644,14 @@ $email = "";
 				<div class="project-wrapper">
 					<div class="project-image">
 						<div class="project-title">
-							<h2></h2>
+							<h2>TBD</h2>
 						</div>
 					</div> <!-- .project-image -->
 
 					<div class="project-content">
 						<div>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
+								Keep an eye out for an upcoming project in this category!
 							</p>
 						</div>
 					</div> <!-- .project-content -->

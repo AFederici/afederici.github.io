@@ -592,20 +592,6 @@ Portfolio Projects
   transition: opacity .5s;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .cd-3d-portfolio .projects .project-image::before, .cd-3d-portfolio .projects .project-image::after {
   content: '';
   position: absolute;
@@ -647,13 +633,13 @@ Portfolio Projects
   background-image: url(../img/photo-1.jpeg);
 }
 .cd-3d-portfolio .projects .row > li.project-2 .project-image::before {
-  background-image: url(../img/photo-2.jpg);
+  background-image: url(../img/photo-22.jpg);
 }
 .cd-3d-portfolio .projects .row > li.project-3 .project-image::before {
   background-image: url(../img/photo-3.jpg);
 }
 .cd-3d-portfolio .projects .row > li.project-4 .project-image::before {
-  background-image: url(../img/photo-4.jpeg);
+  background-image: url(../img/photo-4.jpg);
 }
 .cd-3d-portfolio .projects .row > li.project-5 .project-image::before {
   background-image: url(../img/photo-5.jpg);
@@ -665,7 +651,7 @@ Portfolio Projects
   background-image: url(../img/photo-7.jpg);
 }
 .cd-3d-portfolio .projects .row > li.project-8 .project-image::before {
-  background-image: url(../img/photo-8.jpeg);
+  background-image: url(../img/photo-8.jpg);
 }
 .cd-3d-portfolio .projects .row > li.project-9 .project-image::before {
   background-image: url(../img/photo-9.jpg);
