@@ -95,8 +95,8 @@ $email = "";
 			</center>
 
 			<?php endif; ?>
-			<li class="cd-label" onclick="location='home.html'">BACK HOME</li>
-			<li><a href="index.php" class = "selected">About Me</a></li>
+			<li class="cd-label" onclick="location='index.html'">BACK HOME</li>
+			<li><a href="home.php" class = "selected">About Me</a></li>
 			<li><a href="fun.html">Fun Projects</a></li>
 			<li><a href="ml.html">ML Projects</a></li>
 			<li><a href="financeproj.html">Finance Projects</a></li>
@@ -199,8 +199,8 @@ $email = "";
 														Class I have taken include Calculus (including Multivariable), Linear Algebra, Discrete Math, Number Theory, AP CS, Object Orientated Programming, and computational science.
 														<br />
 														<br />
-														<a href = "img/FedericiResume.pdf" download>
-															<button type="button" class = "button-blue"> Download Resume</button>
+														<a href = "img/FedericiResume.pdf" target="_blank">
+															<button type="button" class = "button-blue"> View Resume</button>
 														</a>
 													</p>
 
