@@ -1,0 +1,135 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Alexander(AJ) Federici">
+	<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700italic,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+
+	<title>Personal Website</title>
+</head>
+<body>
+	<header>
+		<a href="#0" class="cd-logo"><img src="img/logo6.jpg"></a>
+
+		<button class="cd-nav-trigger">Menu<span aria-hidden="true" class="cd-icon"></span></button>
+	</header>
+
+	<nav class="cd-primary-nav">
+		<ul>
+			<li class="cd-label" onclick="location='home.html'">BACK HOME</li>
+			<li><a href="index.php">About Me</a></li>
+			<li><a href="fun.html" >Fun Projects</a></li>
+			<li><a href="ml.html" class = "selected">ML Projects</a></li>
+			<li><a href="financeproj.html">Finance Projects</a></li>
+		</ul>
+	</nav> <!-- .cd-primary-nav -->
+
+	<div class="cd-projects-container">
+
+		<ul>
+			<li class="single-project seven">
+				<div class="cd-title">
+					<h2>Facial Recognition</h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+            <p>
+              During the summer before my senior year in highschool, I worked on a capstone project at MIT for the Amazon Alexa, implementing Neural networks for facial recognition, voice recognition, and natural language processing.  The slightly unfinished project
+              can be found under my GitHub under the title numberWon.  This section is going to be dedicated to the facial recognition portion.
+            </p>
+            <hr />
+            <p>
+              <img src = "img/facerec1.png" />
+            </p>
+            <p>
+              As you can tell from the code above, I am creating objects of both the FaceRec and Database classes.  The Database class is simply just an implementation of dictionaries in a way that they can be stored, accessed, and saved in a wide array of formats.  For example, data about images, the images themselves, and even objects get stored in the database across all of the different projects from Facial Recognition to a reddit news scraper.
+              The FaceRec class is more complicated and relies on pretrained models (dlib) for feature detection.  Throughout my time on the project I wrote many neural networks, but I chose to go with a library for my final project just because it simply would've taken to long to go from a 2/3 layer NN to a 20+ layer one.  On top of this, it requires an abundance of data (faces), which I did not have access to.
+
+              Now, to get into what is happening in the screenshot above.  The database starts as empty since no pre-existing one gets loaded in, and so when the function name_faces_from_picture gets called, it finds all of the faces in the current picture and sets their names and data as new values.  As you can see, it recognized that a face was present but asked for my name since it couldn't find any information on me in the database.  Furthermore, the 1 that gets printed out is the smallst euclidean distance between the face found and any other faces stored.  1 is the default value, and so it makes sense that it was returned as there were no faces in the database to be compared to. If the database was pre-loaded in, it would try to match any found faces to pre-exisitng ones, which we see in the next screenshot.
+            </p>
+            <hr />
+            <p>
+              <img src = "img/facerec2.png" />
+            </p>
+            <br />
+            <p>
+              Now, after we run the same code again, there is a face stored in the database from already running the code once.  This time, the program recognized who I am from the previous data it has on me.  This is possible by taking the smallest euclidean distance between the important features of a picture (eyes, nose, mouth) less than a certain threshold so that two faces don't automatically match if they are the only two available.
+              This program works even when its dark!
+            </p>
+
+            <hr />
+            <p>
+              <img src = "img/whispers.png" />
+            </p>
+            <p>
+
+              Finally, sort of in a different direction is an algorithm known as the 'whispers' or 'chinese-whispers' program that is useful for clustering.  This is extremely useful and can be seen as a current application within the field of facial recognition.  On the iphone, the photos app sorts photos by who is in them, which is essentially what running a whispers algorithm on image data will return.
+              The premise of this algorithm is two cluster data into distinct groups.  Each image in our case can be thought of a node, or a point in space.  Each point is connected to specific other points (not all!) based on a euclidean distance thats within a certain threshold.  Then, nodes are randomly chosen and its weighted edges are added up.  Instead of counting up how many of each other kind of node the node in question is attached to, we will count up some sort of weighted value for each kind of node based on proximity.  In other words, if the node in question is very close to two nodes of one kind, and further from two nodes of another kind but still connected, the node in question will be more similar to the first group.  Then, the node will then become a part of the group it is most similar to and this process will continue until the number of groups converges, resulting in the truly distinctive groupings.  Above is a visiaulization of sorts.
+            </p>
+					</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+
+			<li class="single-project eight">
+				<div class="cd-title">
+					<h2>Tower Defense AI</h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+            <p>
+                My goal for this upcoming project is to write an AI to master not any old game, but a Tower Defense game that I am currently a part of a team of developers for making.  However the game itself is still in its earlier stages and so this project will most likely not take fruition for a while to come.
+            </p>
+
+            </div>
+				</div> <!-- .cd-project-info -->
+			</li>
+
+			<li class="single-project nine">
+				<div class="cd-title">
+					<h2> TBD </h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+            <p>
+              Keep an eye out for an upcoming project in this category!
+            </p>
+					</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+		</ul>
+	</div> <!-- .cd-projects-container -->
+	<center>
+			<div class = "jv" id = "jv"></div>
+	</center>
+	<script type="text/javascript">
+	<!--
+	var m = "This page was last updated: " + document.lastModified;
+	var p = m.length-8;
+	document.getElementById("jv").innerHTML = m.substring(p, 0);
+	 -->
+	</script>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+</script>
+</body>
+</html>

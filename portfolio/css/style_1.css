@@ -1,3 +1,8 @@
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -9,10 +14,8 @@ html {
 body {
   font-size: 1.6rem;
   font-family: sans-serif;
-  color: #edeade;
-  background-color: #4F5B66;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: #2978A0;
+  background-color: #253031;
 }
 
 html, body {
@@ -20,280 +23,19 @@ html, body {
 }
 
 a {
-  color: #daebe8;
+  color: #315659;
   text-decoration: none;
 }
-/* -------------------------------- POTENTIAL ISSUE-------------------------------- */
+
 button {
   border: none;
   outline: none;
   cursor: pointer;
 }
 
-/* --------------------------------
+/* -------------------------------- 
 
- Extra
-
--------------------------------- */
-
-.selected{
-  color: #edeade;
-  background:#327F89;
-  border-color:#bccad6;
-  cursor: default;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-.jv {
-
-  margin: 1em auto;
-  line-height: 1.5;
-  font-weight: bold;
-}
-
-hr {
-  width: 95%;
-  max-width: 800px;
-}
-
-.form-thing{
-  opacity: 0;
-  -webkit-transform: translateX(25%);
-      -ms-transform: translateX(25%);
-          transform: translateX(25%);
-  -webkit-transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1);
-  transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1);
-}
-
-/* The alert message box */
-.alert {
-  opacity:0;
-  animation: fadeIn 4s;
-	width: 60%;
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 15px;
-}
-
-.alert2 {
-  opacity:0;
-  animation: fadeIn 4s;
-	width: 60%;
-    padding: 20px;
-    background-color: #299931; /* Green */
-    color: white;
-    margin-bottom: 15px;
-}
-
-@keyframes fadeIn {
-  from{
-    opacity:0;
-  }
-  to{
-    opacity:1;
-  }
-}
-/* When moving the mouse over the close button */
-.closebtn:hover {
-    color: lightgray;
-}
-
-$blue: #4784AD;
-
-
-form {
-  margin:2px 0 20px 10px;
-  width: 70%;
-  max-width: 800px;
-  display: block;
-  margin-bottom: 1%;
-  padding: 2rem;
-  background: #f9f9f9;
-  color: #2f2f2f;
-  min-width: 9rem;
-  box-sizing: border-box;
-}
-
-input, textarea {
-  margin:2px 0 20px 10px;
-  width: 70%;
-  max-width: 800px;
-  display: block;
-  margin-bottom: 1%;
-
-  font-family: sans-serif;
-  padding: 2rem;
-  background: #E6E6E6;
-  color: #2f2f2f;
-  box-sizing: border-box;
-
-  border: none;
-
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
-  background: darken(#f9f9f9, 10%);
-  color: darken(#f9f9f9, 50%);
-
-  &[type=submit] {
-    background: $green;
-    color: #fff;
-    width: auto;
-    float: right;
-  }
-
-  &::placeholder {
-    color: darken(#f9f9f9, 50%);
-  }
-
-  &.error {
-    background: $red;
-    color: #fff;
-    &::placeholder {
-      color: darken($red, 60%);
-    }
-  }
-}
-textarea {
-  background: #E6E6E6;
-  color: #2f2f2f;
-  box-sizing: border-box;
-  height: 10rem;
-
-  margin-bottom: 1%;
-}
-.captcha {
-  float:left;
-  input {
-    float: right;
-  }
-  input[name=question] {
-    width: 4rem;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    text-align: right;
-    padding-right: 0;
-  }
-  [name=captcha] {
-    width: 5rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    padding-left: 0.5rem;
-    &::placeholder {
-      text-align: center;
-    }
-  }
-}
-
-
-.button-extra{
-  width: 15%;
-  max-width: 800px;
-
-}
-.button-blue {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  height: 36px;
-  line-height: 35px;
-  padding: 0 20px;
-  font-size: 13px;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.4);
-  background-clip: padding-box;
-  border: 1px solid;
-  border-radius: 2px;
-  cursor: pointer;
-  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 1px 2px rgba(0, 0, 0, 0.25);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 1px 2px rgba(0, 0, 0, 0.25);
-  background: #1097e6;
-  border-color: #0d78b6 #0d78b6 #0b689e;
-  background-image: -webkit-linear-gradient(top, #25a5f0, #1097e6 66%, #0f8ad3);
-  background-image: -moz-linear-gradient(top, #25a5f0, #1097e6 66%, #0f8ad3);
-  background-image: -o-linear-gradient(top, #25a5f0, #1097e6 66%, #0f8ad3);
-  background-image: linear-gradient(to bottom, #25a5f0, #1097e6 66%, #0f8ad3);
-}
-
-.button-blue:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-}
-
-.button-blue:active {
-  background: #1097e6;
-  border-color: #0b689e #0d78b6 #0d78b6;
-}
-
-.button-blue:hover:before {
-background-image: -webkit-radial-gradient(farthest-corner, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.03));
-background-image: -moz-radial-gradient(farthest-corner, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.03));
-background-image: -o-radial-gradient(farthest-corner, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.03));
-background-image: radial-gradient(farthest-corner, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.03));
-}
-.button-blue:active {
--webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-.button-blue:active:before {
-content: none;
-}
-
-canvas {
-    position: absolute;
-    /* Use calc to make sure that browser without transform support
-     * (that therefore also dont support calc) don't
-     * actually move your elements. */
-    left: calc(50%);
-    /* Don't forget to prefix. */
-    transform: translate(-50%, 5%);
-}
-.canvas-like1{
-  position: absolute;
-  /* Use calc to make sure that browser without transform support
-   * (that therefore also dont support calc) don't
-   * actually move your elements. */
-  left: calc(20.2%);
-  top: calc(8%);
-  /* Don't forget to prefix. */
-  transform: translate(-220%, -114%);
-}
-
-.canvas-like2{
-  position: absolute;
-  /* Use calc to make sure that browser without transform support
-   * (that therefore also dont support calc) don't
-   * actually move your elements. */
-  left: calc(28.2%);
-  top: calc(8%);
-  /* Don't forget to prefix. */
-  transform: translate(-180%, -114%);
-}
-
-.canvas-like3{
-  position: absolute;
-  /* Use calc to make sure that browser without transform support
-   * (that therefore also dont support calc) don't
-   * actually move your elements. */
-  left: calc(78.2%);
-  top: calc(8%);
-  /* Don't forget to prefix. */
-  transform: translate(-50%, -114%);
-}
-
-.canvas-text{
-    margin-top:38em;
-}
-
-/* --------------------------------
-
-End Extra
+ Header
 
 -------------------------------- */
 .cd-logo, .cd-nav-trigger {
@@ -302,7 +44,6 @@ End Extra
 }
 
 .cd-logo {
-  cursor: default;
   top: 34px;
   left: 5%;
   -webkit-transition: opacity 0.3s, visibility 0.3s;
@@ -347,7 +88,7 @@ End Extra
   backface-visibility: hidden;
 }
 .no-touch .cd-nav-trigger:hover {
-  background: gray;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .cd-nav-trigger .cd-icon {
   /* middle line of the menu icon */
@@ -436,7 +177,7 @@ End Extra
   transform: translateX(-5px) translateY(-3px) rotate(-45deg) scaleX(0.5);
 }
 
-/* --------------------------------
+/* -------------------------------- 
 
  Navigation
 
@@ -480,25 +221,22 @@ End Extra
   transition: background 0.2s;
   color: #FFFFFF;
   font-family: "Playfair Display", serif;
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 .no-touch .cd-primary-nav a:hover {
-  background-color: #327F89;
+  background-color: #303e40;
 }
 .cd-primary-nav .cd-label {
   position: relative;
-  cursor: pointer;
-  margin: 1.2em 0 1em;
+  margin: 2.4em 0 2em;
+  color: #51696b;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 5.5rem;
+  font-size: 1.2rem;
   letter-spacing: 1px;
-}
-.cd-primary-nav .cd-label:hover{
-  color: #327F89;
 }
 .cd-primary-nav .cd-label::after {
   /* line below .cd-label*/
@@ -513,7 +251,7 @@ End Extra
   transform: translateX(-50%);
   bottom: -16px;
   height: 1px;
-  width: 300px;
+  width: 40px;
   background-color: currentColor;
 }
 .cd-primary-nav.nav-open {
@@ -535,7 +273,7 @@ End Extra
   }
 }
 
-/* --------------------------------
+/* -------------------------------- 
 
  Projects
 
@@ -646,7 +384,6 @@ End Extra
   z-index: 1;
   height: 33.3333333333%;
   width: 100vw;
-  background-color: black;
   text-align: center;
   /* vertical align its content */
   display: table;
@@ -657,7 +394,7 @@ End Extra
   position: absolute;
   top: 0;
   left: 0;
-  height: 200%;
+  height: 300%;
   width: 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -680,53 +417,23 @@ End Extra
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
-
-.one .cd-title::before {
-  background-image: url(../img/photo-1.jpeg);
+.single-project:nth-of-type(1) .cd-title {
+  background-color: #2978A0;
 }
-
-.two .cd-title::before {
-  background-image: url(../img/photo-5.jpg);
+.single-project:nth-of-type(1) .cd-title::before {
+  background-image: url(../img/img-1.jpg);
 }
-
-.three .cd-title::before {
-  background-image: url(../img/photo-9.jpg);
+.single-project:nth-of-type(2) .cd-title {
+  background-color: #315659;
 }
-
-.four .cd-title::before {
-  background-image: url(../img/photo-22.jpg);
+.single-project:nth-of-type(2) .cd-title::before {
+  background-image: url(../img/img-2.jpg);
 }
-
-.five .cd-title::before {
-  background-image: url(../img/photo-6.jpg);
+.single-project:nth-of-type(3) .cd-title {
+  background-color: #BCAB79;
 }
-
-.six .cd-title::before {
-  background-image: url(../img/photo-10.jpg);
-}
-
-.seven .cd-title::before {
-  background-image: url(../img/photo-3.jpg);
-}
-
-.eight .cd-title::before {
-  background-image: url(../img/photo-7.jpg);
-}
-
-.nine .cd-title::before {
-  background-image: url(../img/photo-11.jpg);
-}
-
-.ten .cd-title::before {
-  background-image: url(../img/photo-4.jpg);
-}
-
-.eleven .cd-title::before {
-  background-image: url(../img/photo-8.jpg);
-}
-
-.twelve .cd-title::before {
-  background-image: url(../img/photo-12.jpeg);
+.single-project:nth-of-type(3) .cd-title::before {
+  background-image: url(../img/img-3.jpg);
 }
 .single-project:nth-of-type(1) .cd-title::before, .single-project:nth-of-type(2) .cd-title::before, .single-project:nth-of-type(3) .cd-title::before {
   background-size: cover;
@@ -772,11 +479,11 @@ End Extra
 }
 .selected .cd-title h2 {
   /* vertically center h2 in the full-height image*/
-  -webkit-transform: translateY(30%);
-  -moz-transform: translateY(30%);
-  -ms-transform: translateY(30%);
-  -o-transform: translateY(30%);
-  transform: translateY(30%);
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
 }
 @media only screen and (min-width: 1170px) {
   .cd-title h2 {
@@ -802,7 +509,7 @@ End Extra
   /* use to push the .content-wrapper below the intro project image */
   content: '';
   display: block;
-  height: 66%;
+  height: 100%;
   width: 100%;
   pointer-events: none;
 }
@@ -814,14 +521,13 @@ End Extra
 }
 .cd-project-info .content-wrapper > * {
   width: 90%;
+  max-width: 800px;
   margin: 0 auto;
   color: #253031;
 }
 .cd-project-info .content-wrapper p {
-  width: 95%;
-  margin: 1em auto;
-  line-height: 1.6;
-  color: #667292;
+  margin-bottom: 2em;
+  line-height: 2;
 }
 .selected .cd-project-info {
   -webkit-overflow-scrolling: touch;
@@ -837,7 +543,7 @@ End Extra
 }
 @media only screen and (min-width: 1170px) {
   .cd-project-info .content-wrapper {
-    padding: 2em 0;
+    padding: 4em 0;
   }
   .cd-project-info .content-wrapper p {
     font-size: 1.8rem;
@@ -930,9 +636,9 @@ End Extra
     transform: translateX(-50%);
   }
 }
-/* --------------------------------
+/* -------------------------------- 
 
- Support for no js
+ Support for no js 
 
 -------------------------------- */
 .no-js .cd-nav-trigger, .no-js .cd-scroll {

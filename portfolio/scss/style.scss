@@ -1,4 +1,4 @@
-// Note: we use Autoprefixer to add vendor prefixes to our CSS -> https://github.com/postcss/autoprefixer
+@import 'bourbon'; // http://bourbon.io/
 
 @import '../partials/variables'; // colors, fonts etc...
 
@@ -23,11 +23,14 @@ html {
 body {
 	font: {
 		size: 1.6rem;
+		family: $primary-font; // variables inside partials > _variables.scss
 	}
-	color: $color-3; // variables inside partials > _variables.scss
-	background-color: $color-1;
-	font-family: sans-serif;
-	@include font-smoothing;
+	color: $color-1;
+	background-color: $color-4;
+}
+
+html, body {
+	height: 100%;
 }
 
 a {
@@ -35,628 +38,574 @@ a {
 	text-decoration: none;
 }
 
+button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
 /* -------------------------------- 
 
-Portfolio Navigation 
+ Header
 
 -------------------------------- */
 
-.cd-3d-portfolio-navigation {
-	width: 100%;
-	height: 25vh;
-	text-align: center;
-	display: table;
+.cd-logo, .cd-nav-trigger {
+	position: absolute;
+	z-index: 3;
+}
 
-	.cd-wrapper {
-		display: table-cell;
-		width: 100%;
-		vertical-align: middle;
+.cd-logo {
+	top: 34px;
+	left: 5%;
+	@include transition(opacity .3s, visibility .3s);
+
+	&.project-open {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.cd-nav-trigger {
+	top: 24px;
+	right: 5%;
+	height: 44px;
+	width: 44px;
+	border-radius: 50%;
+	background-color: rgba(#000, .6);
+	@include transition(background .2s);
+	
+	/* image replacement */
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	color: transparent;
+
+	.cd-icon, 
+	.cd-icon::before, 
+	.cd-icon::after {
+		/* icon created in CSS */
+		position: absolute;
+		background-color: $color-5;
+		border-radius: 2px;
+
+		/* Force Hardware Acceleration in WebKit */
+		@include transform(translateZ(0));
+		@include backface-visibility(hidden);
 	}
 
-	h1 {
-		font-size: 2rem;
-		margin-bottom: .6em;
-		font-family: $heading;
-		font-weight: bold;
+	.no-touch &:hover {
+		background-color: rgba(#000, .8);
+	}
+
+	.cd-icon {
+		/* middle line of the menu icon */
+		display: inline-block;
+		width: 18px;
+		height: 2px;
+		@include center; // mixin inside partials > _mixins.scss
+		@include transition(transform .3s, background-color .3s);
+
+		&::before, &::after {
+			/* upper and lower lines of the menu icon */
+			content: '';
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100%; 
+			@include transition(transform .3s);
+		}
+
+		&::before {
+			@include transform(translateY(-6px));
+		}
+
+		&::after {
+			@include transform(translateY(6px));
+		}
+	}
+
+	&.project-open .cd-icon {
+		/* user selects a projects - transform the icon into a 'X' */
+		background-color: rgba($color-5, 0);
+
+		&::before, &::after {
+			background-color: rgba($color-5, 1);
+		}
+		
+		&::before {
+			@include transform(translateY(0) rotate(45deg));
+		}
+
+		&::after {
+			@include transform(translateY(0) rotate(-45deg));
+		}
+	}
+
+	&.nav-open .cd-icon {
+		/* user opens the navigation - transform the icon into an arrow */
+		@include transform(translateY(-50%) translateX(-50%) rotate(90deg));
+
+		&::after {
+			@include transform(translateX(-5px) translateY(3px) rotate(45deg) scaleX(.5));
+		}
+
+		&::before {
+			@include transform(translateX(-5px) translateY(-3px) rotate(-45deg) scaleX(.5));
+		}
+	}
+}
+
+/* -------------------------------- 
+
+ Navigation
+
+-------------------------------- */
+
+.cd-primary-nav {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	/* height = (100% - 9%) - 9% is the space taken by the projects when the navigation is open */
+	height: 91%;
+	width: 100%;
+	overflow: auto;
+	text-align: center;
+	opacity: 0;
+	@include transition(opacity 0s .4s);
+
+	/* vertically align its content */
+	display: table;
+
+	ul {
+		/* vertically align inside nav */
+		display: table-cell;
+		vertical-align: middle;
+		@include transform(translateY(50px));
+		@include transition(transform .4s);
+	}
+
+	a {
+		display: inline-block;
+		padding: .4em 1em;
+		border-radius: 4px;
+		@include transition(background .2s);
+
+		color: $color-5;
+		font-family: $secondary-font;
+		font-size: 2.4rem;
+		font-weight: 700;
+		@include font-smoothing;
+
+		.no-touch &:hover {
+			background-color: lighten($color-4, 5%);
+		}
+	}
+
+	.cd-label {
+		position: relative;
+		margin: 2.4em 0 2em;
+
+		color: lighten($color-4, 20%);
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: 1.2rem;
+		letter-spacing: 1px;
+
+		&::after {
+			/* line below .cd-label*/
+			content: '';
+			position: absolute;
+			@include center(x);
+			bottom: -16px;
+			height: 1px;
+			width: 40px;
+			background-color: currentColor;
+		}
+	}
+
+	&.nav-open {
+		opacity: 1;
+		@include transition(opacity 0s);
+
+		ul {
+			@include transform(translateY(0));
+		}
+	}
+
+	@include MQ(L) {
+
+		a {
+			font-size: 4rem;
+		}
+	}
+}
+
+/* -------------------------------- 
+
+ Projects
+
+-------------------------------- */
+
+.cd-projects-container {
+	height: 100%;
+	width: 100vw;
+	position: relative;
+	overflow: hidden;
+
+	.single-project {
+		position: absolute;
+		z-index: 2;
+		top: 0px;
+		left: 0px;
+		height: 100%;
+		width: 100%;
+		cursor: pointer;
+		@include transition(transform .4s);
+
+		/* Force hardware acceleration */
+		@include backface-visibility(hidden);
+		@include transform(translateZ(0));
+
+		&:nth-of-type(2) {
+			@include transform(translateY(100%/$items));
+		}
+
+		&:nth-of-type(3) {
+			@include transform(translateY(100%*2/$items));
+		}
+
+		&.selected {
+			/* selected project */
+			cursor: auto;
+			@include transform(translateY(0));
+		}
+
+		&.selected ~ li {
+			/* hide siblings projects */
+			@include transform(translateY(100%));
+		}
+	}
+
+	&.nav-open .single-project {
+		box-shadow: 0 0 30px rgba(#000, .5);
+		@include transform(translateY(91%));
+
+		&:nth-of-type(2) {
+			@include transform(translateY(94%));
+		}
+
+		&:nth-of-type(3) {
+			@include transform(translateY(97%));
+		}
+	}
+
+	&.nav-open:hover .single-project {
+		@include transform(translateY(88%));
+
+		&:nth-of-type(2) {
+			@include transform(translateY(92%));
+		}
+
+		&:nth-of-type(3) {
+			@include transform(translateY(96%));
+		}
+	}
+}
+
+.cd-title {
+	position: relative;
+	z-index: 1;
+    height: 100%/$items;
+    width: 100vw;
+    text-align: center;
+    /* vertical align its content */
+    display: table;
+
+    &::before {
+    	/* background image */
+    	content: '';
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	height: 300%;
+    	width: 100%;
+    	background-position: center center;
+    	background-repeat: no-repeat; 
+    }
+
+    &::after {
+		/* line below title -  visible on hover */
+		content: '';
+		position: absolute;
+		left: 50%;
+	    top: calc(50% + 30px);
+	    @include transform(translateX(-50%) translateY(-50%) scaleX(0));
+	    height: 1px;
+	    width: 60px;
+	    background-color: $color-5;
+	    @include transition(transform .2s);
+	}
+
+    .single-project:nth-of-type(1) & {
+    	background-color: $color-1;
+
+    	&::before {
+    		background-image: url(../img/img-1.jpg);
+    	}
+    }
+
+    .single-project:nth-of-type(2) & {
+    	background-color: $color-2;
+
+    	&::before {
+    		background-image: url(../img/img-2.jpg);
+    	}
+    }
+
+    .single-project:nth-of-type(3) & {
+    	background-color: $color-3;
+
+    	&::before {
+    		background-image: url(../img/img-3.jpg);
+    	}
+    }
+
+    .single-project:nth-of-type(1) &::before, 
+    .single-project:nth-of-type(2) &::before, 
+    .single-project:nth-of-type(3) &::before {
+    	background-size: cover;
+    } 
+
+	h2 {
+		position: relative;
+		z-index: 1;
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: $color-5;
+		font-family: $secondary-font;
+
+		/* vertical align inside .cd-title */
+		display: table-cell;
+		vertical-align: middle;
+		
+		@include transition(transform .4s);
+
+		/* Force hardware acceleration */
+		@include backface-visibility(hidden);
+		@include transform(translateZ(0));
+	}
+
+	.no-touch &:hover::after {
+		@include transform(translateX(-50%) translateY(-50%) scaleX(1));
+	}
+
+	.no-touch .selected &:hover::after {
+		@include transition(transform 0s);
+		@include transform(translateX(-50%) translateY(-50%) scaleX(0));
+	}
+
+	.selected & h2 {
+		/* vertically center h2 in the full-height image*/ 
+		@include transform(translateY( -150%*(1 - $items)/$items ));
+    }
+
+	@include MQ(L) {
+
+		h2 {
+			font-size: 3.6rem;
+		}
+	}
+}
+
+.cd-project-info {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	opacity: 0;
+	visibility: hidden;
+	@include transition(opacity .4s, visibility .4s);
+
+	&::before {
+		/* use to push the .content-wrapper below the intro project image */
+		content: '';
+		display: block;
+		height: 100%;
+		width: 100%;
+		pointer-events: none;
+	}
+
+	.content-wrapper {
+		position: relative;
+		z-index: 2;
+		padding: 2em 0 3em;
+		background-color: $color-5;
+	}
+
+	.content-wrapper > * {
+		width: 90%;
+		max-width: 800px;
+		margin: 0 auto;
+		color: $color-4;
+	}
+
+	.content-wrapper p {
+		margin-bottom: 2em;
+		line-height: 2;
+	}
+
+	.selected & {
+		-webkit-overflow-scrolling: touch;
+		opacity: 1;
+		visibility: visible;
+		@include transition(opacity 0s, visibility 0s);
+	}
+
+	&.has-boxshadow .content-wrapper {
+		/* add a box-shadow while scrolling over the background image */
+		box-shadow: 0 -5px 30px rgba(#000, .2);
+	}
+
+	@include MQ(L) {
+		.content-wrapper {
+			padding: 4em 0;
+		}
+
+		.content-wrapper p {
+			font-size: 1.8rem
+		}
+	}
+}
+
+.cd-scroll {
+	/* scroll down arrow */
+	position: fixed;
+	z-index: 1;
+	top: calc(100% - 100px);
+	@include center(x);
+	height: 48px;
+	width: 48px;
+
+	/* replace text with image */
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	color: transparent;
+	background: transparent url(../img/cd-arrow.svg) no-repeat center center;
+
+	opacity: 0;
+	visibility: hidden;
+	@include transition(opacity .4s, visibility .4s);
+
+	.project-open & {
+		opacity: 1;
+		visibility: visible;
+		@include animation(cd-translate 1.2s 0.4s);
+		@include animation-iteration-count(2);
+	}
+
+	.project-open .has-boxshadow & {
+		opacity: 0;
+		visibility: hidden;
+	} 
+}
+
+@include keyframes(cd-translate) {
+	0% {
+		@include transform(translateX(-50%));
+	}
+
+	50% {
+		@include transform(translateY(10px) translateX(-50%));
+	}
+
+	100% {
+		@include transform(translateX(-50%));
+	}
+}
+
+/* -------------------------------- 
+
+ Support for no js 
+
+-------------------------------- */
+
+.no-js .cd-nav-trigger, .no-js .cd-scroll {
+	display: none;
+}
+
+.no-js .cd-primary-nav {
+	position: relative;
+	height: auto;
+	min-height: 94px;
+	display: block;
+	@include clearfix;
+	opacity: 1;
+
+	ul {
+		display: block;
+		padding-left: calc(5% + 60px);
+		@include clearfix;
+		float: right;
+		@include transform(translateY(0));
 	}
 
 	li {
 		display: inline-block;
-		margin: 0 .3em;
+		float: left;
+		margin-top: 1.4em;
 
-		a {
-			display: inline-block;
-			color: $color-3;
-			border: 2px solid darken($color-1, 3%);
-			padding: .6em;
-			transition: all .2s;
-
-			&:hover {
-				border-color: $color-2;
-			}
-		}
-
-		.selected {
-			color: $color-3;
-			background: $color-2;
-			border-color: $color-2;
-			cursor: default;
-			box-shadow: 0 4px 20px rgba(#000, .2);
+		&.cd-label {
+			display: none;
 		}
 	}
 
-	@include MQ(M) {
-		h1 {
-			font-size: 3.2rem;
-		}
+	a {
+		font-size: 1.6em;
 	}
 }
 
-/* -------------------------------- 
+.no-js .cd-projects-container {
+	height: auto;
 
-Portfolio Projects 
-
--------------------------------- */
-
-.cd-3d-portfolio {
-	overflow: hidden;
-
-	.close-project {
-		/* this is the 'X' icon - visible when a project has been selected */
-		position: absolute;
-		z-index: 2;
-		top: 24px;
-		right: 5%;
-		/* replace text with image */
-		color: transparent;
-		white-space: nowrap;
-		text-indent: 100%;
-		overflow: hidden;
-		height: 48px;
-		width: 48px;
-		border-radius: 50%;
-		background: rgba(#000, .6);
-		transform: scale(0);
-		transition: transform .3s 0s;
-
-		&:hover {
-			background: rgba(#000, 1);
-		}
-
-		&::after, &::before {
-			/* the 'X' lines */
-			content: '';
-			position: absolute;
-			width: 18px;
-			height: 2px;
-			top: 50%;
-			left: 50%;
-			background: $color-3;
-		}
-
-		&::before {
-			transform: translateX(-50%) translateY(-50%) rotate(45deg);
-		}
-
-		&::after {
-			transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-		}
-	}
-
-	.project-is-open .open .close-project { 
-		/* show the 'X' icon when a project has been selected */
-		transform: scale(1);
-		transition-delay: $open-animation;
-		transition: transform .3s $open-animation, background .3s;
-	}
-}
-
-
-.cd-3d-portfolio .projects {
-	/* used to render its children in a 3D space - add perspective */
-	perspective: 1000px;
-
-	.row {
-		height: 25vh;
+	.single-project {
 		position: relative;
-		z-index: 1;
-		/* position its children in a 3d space */
-		transform-style: preserve-3d;
-		/* Force hardware acceleration */
-		will-change: transform;
-		transform: translateZ(-$parallelepiped-width/2);
-		transition: transform .6s cubic-bezier(.5,0,.1,1);
-		pointer-events: none;
-
-		&:nth-of-type(2) {
-			transition-delay: .1s;
-		}
-
-		&:nth-of-type(3) {
-			transition-delay: .2s;
-		}
-
-		&::after {
-			/* this is used to create the row bottom face */
-			content: '';
-			position: absolute;
-			z-index: 1;
-			bottom: 0;
-			left: 0;
-			height: 100vw;
-			width: 100%;
-			background: darken($color-1, 15%);
-			transform: translateZ($parallelepiped-width/2) rotateX(90deg);
-			transform-origin: bottom center;
-			transition: visibility 0s $open-animation;
-		}
-
-		&:last-of-type::after {
-			/* use its ::after element as top face (rather than bottom face) */
-			top: 0;
-			bottom: auto;
-			transform: translateZ($parallelepiped-width/2) rotateX(-90deg);
-			transform-origin: top center;
-		}
-	}
-
-	&:not(.project-has-transition) .row:nth-of-type(2) {
-		/* increase z-index of the second row - this way the back faces of the first and thirdv rows won't be visible (only of no project has been selected) */
-		z-index: 2;
-	}
-
-	.no-preserve3d & .row {
-		/* fallback for browsers that don't support the preser3d property */
-		transform: translateZ(0);
-	}
-
-	.row > li {
-		/* this is the single project */
-		position: absolute;
-		z-index: 1;
-		height: 100%;
-		width: 100%;
-		transform: translateZ($parallelepiped-width/2);
-		will-change: transform;
-		overflow: hidden;
-
-		&.selected {
-			/* this the project on the visible face of the parallelepiped */
-			pointer-events: auto;
-		}
-
-		&.front-face {
-			transform: translateZ($parallelepiped-width/2);
-		}
-
-		&.right-face {
-			transform: rotateY(90deg) translateZ($parallelepiped-width/2);
-		}
-
-		&.left-face {
-			transform: rotateY(-90deg) translateZ($parallelepiped-width/2);
-		}
-
-		&.back-face {
-			transform: rotateY(180deg) translateZ($parallelepiped-width/2);
-		}
-
-		&.hidden {
-			opacity: 0;
-			visibility: hidden;
-		}
-	}
-
-	.no-preserve3d & .row > li {
-		opacity: 0;
-		transform: translateX(0);
-		transition: opacity .4s;
-
-		&.front-face, &.right-face, &.left-face, &.back-face {
-			transform: translateX(0);
-		}
-
-		&.selected {
-			opacity: 1;
-		}
-	}
-
-	.project-wrapper {
-		position: absolute;
+		@include transform(translateY(0));
 		top: 0;
-		left: 0;
-		height: 100vh;
-		width: 100%;
+		cursor: auto;
 	}
 
-	.project-image {
-		position: relative;
-		z-index: 2;
-		/* vertically center its content */
-		display: table;
-		width: 100%;
-		height: 25%;
-		cursor: pointer;
-		/* force hardware acceleration */
-		transform: translateZ(0);
-		will-change: transform;
-		backface-visibility: hidden;
-		transition: transform $open-animation;
-
-		&::before, &::after {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-		}
+	.cd-title {
+		height: 300px;
 
 		&::before {
-			/* this is the project background image */
-			z-index: 1;	
-			height: 240%;
-			background-color: darken($color-1, 10%);
-			background-position: center center;
-			background-repeat: no-repeat;
-			background-size: cover;
+			height: 300px;
 		}
-
-		&::after {
-			/* this is the project image cover layer - this is visible only during a rotation of the parallelepiped (while the project is disappearing) */
-			z-index: 3;
-			height: 100%;
-			background: darken($color-1, 30%);
-			opacity: 0;
-			transition: opacity .5s;
-		}
-	}
-
-	.row > li:not(.selected) .project-image::after {
-		opacity: 1;
-	}
-
-	.row:nth-of-type(2) > li:not(.selected) .project-image::after {
-		transition-delay: .1s;
-	}
-
-	.row:nth-of-type(3) > li:not(.selected) .project-image::after {
-		transition-delay: .2s;
-	}
-
-	.row > li.project-1 {
-
-		.project-image::before {
-			/* set project background image */
-			background-image: url(../img/photo-1.jpg);
-		}
-	}
-
-	.row > li.project-2 {
-
-		.project-image::before {
-			background-image: url(../img/photo-2.jpg);
-		}
-	}
-
-	.row > li.project-3 {
-		
-		.project-image::before {
-			background-image: url(../img/photo-3.jpg);
-		}
-	}
-
-	.row > li.project-4 {
-		
-		.project-image::before {
-			background-image: url(../img/photo-4.jpg);
-		}
-	}
-
-	.row > li.project-5 {
-		
-		.project-image::before {
-			background-image: url(../img/photo-5.jpg);
-		}
-	}
-
-	.row > li.project-6 {
-		
-		.project-image::before {
-			background-image: url(../img/photo-6.jpg);
-		}
-	}
-
-	.row > li.project-7 {
-		
-		.project-image::before {
-			background-image: url(../img/photo-7.jpg);
-		}
-	}
-
-	.row > li.project-8 {
-		
-		.project-image::before {
-			background-image: url(../img/photo-8.jpg);
-		}
-	}
-
-	.row > li.project-9 {
-		
-		.project-image::before {
-			background-image: url(../img/photo-9.jpg);
-		}
-	}
-
-	.project-title {
-		position: relative;
-		z-index: 2;
-		/* vertically center inside its parent */
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
-		/* force hardware acceleration */
-		transform: translateZ(0);
-		will-change: transform;
-		transition: transform $open-animation cubic-bezier(.5,0,.1,1);
 	}
 
 	h2 {
-		color: $color-3;
-		font-size: 2.2rem;
-		font-weight: bold;
-		font-family: $heading;
+		@include transform(translateY(0));
 	}
 
-	.project-content {
-		position: absolute;
-		z-index: 1;
-		/* place the content right below the project image */
-		top: 60%;
-		width: 100%;
-		background: white;
-		box-shadow: 0 -5px 0 white;
-
-		> div {
-			opacity: 0;
-			transform: translateY(25%);
-			transition: all $open-animation cubic-bezier(.5,0,.1,1);
-		}
-
-		p {
-			width: 90%;
-			max-width: 800px;
-			margin: 2em auto;
-			line-height: 1.6;
-			color: tint($color-1, 20%);
-		}
-	}
-
-	&.project-has-transition .row > li {
-		/* the project-has-transition class is used to add a transition to the tranform property of the single projects - it's added when a project is selected (before opening it) and removed when a project is colsed (when the closing animation is finished) */
-		transition: transform $open-animation cubic-bezier(.5,0,.1,1), opacity 0s $open-animation;
-
-		&.selected.open {
-			overflow: visible;
-		}
-
-		&:not(.selected) {
-			opacity: 0;
-		}
-	}
-
-	&.project-has-transition .row::after {
-		/* hide the bottom/top parallelepiped face when a project is selected */
-		visibility: hidden;
-		transition: visibility 0s;
-	}
-
-	&.project-is-open .row > li {
-		/* the project-is-open class is used when a project is selected - it's added when a project is selected (before opening it) and removed when a project is closed (before the closing animation begins) */
-		transition: transform $open-animation cubic-bezier(.5,0,.1,1), opacity 0s;
-
-		&.selected.open .project-wrapper {
-			/* selected project on the visible face of the parallelepiped */
-			overflow: auto;
-			-webkit-overflow-scrolling: touch;
-		}
-
-		&.selected .project-image {
-			/* projects on the visible face of the parallelepiped */
-			transform: translateY(0);
-		}
-
-		&.selected.open .project-image {
-			cursor: auto;
-		}
-
-		&.selected.open .project-title {
-			transform: translateY(70%);
-		}
-
-		&.selected.open .project-content > div {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	&.project-is-open .row:first-of-type {
-
-		.selected.open.front-face {
-			/* if the project selected is inside the first row */
-			transform: translateZ($parallelepiped-width/2) translateY(-100%);
-		}
-
-		.selected.open.right-face {
-			transform: rotateY(90deg) translateZ($parallelepiped-width/2) translateY(-100%);
-		}
-
-		.selected.open.left-face {
-			transform: rotateY(-90deg) translateZ($parallelepiped-width/2) translateY(-100%);
-		}
-
-		.selected.open.back-face {
-			transform: rotateY(180deg) translateZ($parallelepiped-width/2) translateY(-100%);
-		}
-
-		.selected:not(.open).front-face {
-			/* if the project selected is not inside the first row */
-			transform: translateZ($parallelepiped-width/2) translateY(300%);
-		}
-
-		.selected:not(.open).right-face {
-			transform: rotateY(90deg) translateZ($parallelepiped-width/2) translateY(300%);
-		}
-
-		.selected:not(.open).left-face {
-			transform: rotateY(-90deg) translateZ($parallelepiped-width/2) translateY(300%);
-		}
-
-		.selected:not(.open).back-face {
-			transform: rotateY(180deg) translateZ($parallelepiped-width/2) translateY(300%);
-		}
-	}
-
-	&.project-is-open .row:nth-of-type(2) {
-
-		.selected.open.front-face {
-			/* if the project selected is inside the second row */
-			transform: translateZ($parallelepiped-width/2) translateY(-200%);
-		}
-
-		.selected.open.right-face {
-			transform: rotateY(90deg) translateZ($parallelepiped-width/2) translateY(-200%);
-		}
-
-		.selected.open.left-face {
-			transform: rotateY(-90deg) translateZ($parallelepiped-width/2) translateY(-200%);
-		}
-
-		.selected.open.back-face {
-			transform: rotateY(180deg) translateZ($parallelepiped-width/2) translateY(-200%);
-		}
-
-		.selected:not(.open).front-face {
-			/* if the project selected is not inside the second row */
-			transform: translateZ($parallelepiped-width/2) translateY(200%);
-		}
-
-		.selected:not(.open).right-face {
-			transform: rotateY(90deg) translateZ($parallelepiped-width/2) translateY(200%);
-		}
-
-		.selected:not(.open).left-face {
-			transform: rotateY(-90deg) translateZ($parallelepiped-width/2) translateY(200%);
-		}
-
-		.selected:not(.open).back-face {
-			transform: rotateY(180deg) translateZ($parallelepiped-width/2) translateY(200%);
-		}
-	}
-
-	&.project-is-open .row:nth-of-type(3) {
-
-		.selected.open.front-face {
-			/* if the project selected is inside the third row */
-			transform: translateZ($parallelepiped-width/2) translateY(-300%);
-		}
-
-		.selected.open.right-face {
-			transform: rotateY(90deg) translateZ($parallelepiped-width/2) translateY(-300%);
-		}
-
-		.selected.open.left-face {
-			transform: rotateY(-90deg) translateZ($parallelepiped-width/2) translateY(-300%);
-		}
-
-		.selected.open.back-face {
-			transform: rotateY(180deg) translateZ($parallelepiped-width/2) translateY(-300%);
-		}
-
-		.selected:not(.open).front-face {
-			/* if the project selected is not inside the third row */
-			transform: translateZ($parallelepiped-width/2) translateY(100%);
-		}
-
-		.selected:not(.open).right-face {
-			transform: rotateY(90deg) translateZ($parallelepiped-width/2) translateY(100%);
-		}
-
-		.selected:not(.open).left-face {
-			transform: rotateY(-90deg) translateZ($parallelepiped-width/2) translateY(100%);
-		}
-
-		.selected:not(.open).back-face {
-			transform: rotateY(180deg) translateZ($parallelepiped-width/2) translateY(100%);
-		}
-	}
-
-	.no-preserve3d &.project-is-open .row.row:first-of-type > li.selected {
-		transform: translateY(300%);
-
-		&.open {
-			transform: translateY(-100%);
-		}
-	}
-
-	.no-preserve3d &.project-is-open .row.row:nth-of-type(2) > li.selected {
-		transform: translateY(200%);
-
-		&.open {
-			transform: translateY(-200%);
-		}
-	}
-
-	.no-preserve3d &.project-is-open .row.row:nth-of-type(3) > li.selected {
-		transform: translateY(100%);
-
-		&.open {
-			transform: translateY(-300%);
-		}
-	}
-
-	@include MQ(M) {
-
-		h2 {
-			font-size: 3.5rem;
-		}
-
-		p {
-			font-size: 2rem;
-		}
+	h2::after {
+		display: none;
 	}
 }
 
-/* -------------------------------- 
+.no-js .cd-project-info {
+	position: relative;
+	height: auto;
+	top: 0;
+	@include transform(translateY(0));
+	opacity: 1;
+	visibility: visible;
 
-Back to top 
-
--------------------------------- */
-
-.cd-top {
-	position: fixed;
-	z-index: 3;
-	bottom: 40px;
-	right: 5%;
-	display: inline-block;
-	height: 48px;
-	width: 48px;
-	/* replace text with image */
-	overflow: hidden; 
-	text-indent: 100%;
-	white-space: nowrap;
-	background: rgba(#000, .6) url(../img/cd-icon-arrow.svg) no-repeat center center;
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity .3s, visibility .3s;
-
-	&.is-visible {
-		/* the button becomes visible */
-		visibility: visible;
-		opacity: 1;
-	}
-
-	&:hover {
-		background-color: rgba(#000, 1);
-		opacity: 1;
+	.content-wrapper {
+		margin-top: 0;
 	}
 }

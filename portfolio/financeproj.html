@@ -1,0 +1,137 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Alexander(AJ) Federici">
+	<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700italic,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+
+	<title>Personal Website</title>
+</head>
+<body>
+	<header>
+		<a href="#0" class="cd-logo"><img src="img/logo6.jpg"></a>
+
+		<button class="cd-nav-trigger">Menu<span aria-hidden="true" class="cd-icon"></span></button>
+	</header>
+
+	<nav class="cd-primary-nav">
+		<ul>
+			<li class="cd-label" onclick="location='home.html'">BACK HOME</li>
+			<li><a href="index.php">About Me</a></li>
+			<li><a href="fun.html" >Fun Projects</a></li>
+			<li><a href="ml.html" >ML Projects</a></li>
+			<li><a href="financeproj.html" class = "selected">Finance Projects</a></li>
+		</ul>
+	</nav> <!-- .cd-primary-nav -->
+
+	<div class="cd-projects-container">
+
+		<ul>
+			<li class="single-project ten">
+				<div class="cd-title">
+					<h2>Trading Bot</h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+						<p>
+              As a hobby, I like to trade cryptocurrency and participate in stock portfolio challenges.  So, I decided why not make a bot!
+            </p>
+            <p>
+              Currently, there is a lot more work that needs to be done but the bones of it can be found on my github.  Currently, I have done all the dirty work of aggregating plenty of data through web scraping and formatting.
+              To prepare things for the future, I went ahead and created a cloud-based SQL database using AWS.  In my limited experiences of computational finance through my internship, there is going to be tons of data and its going to be most efficient if I can just query it from a database instead of reading locally downloaded files.
+
+            </p>
+            <p>
+              <img src = "img/db1.png" />
+            </p>
+            <p>
+
+              Beyond data collection, I have created a few tecnical indicators such as moving averages and a schocastic relatvie strength index.
+              Furthermore, I have created an implementation for volume analysis and have done some work already on the accuracy of extrapolation through fast fourier transformations. This has yielded some interesting data for further research purposes, and I am well aware of the limitations and problems of fft in financial predictions.
+
+            </p>
+            <p>
+              <img src = "img/finance1.png" />
+            </p>
+            <p>
+              <img src = "img/finance2.png" />
+            </p>
+            <p>
+              Currently I am looking into the application of ml via SVM and decision trees.
+              Going forward, I also have plans to include a weight of some sort to quantitative reasoning based on sentiment analysis of the news/twitter/etc.  Finally, I also have plans to create a facebook messenger bot to notify the user of updates.
+              I have big plans, and will probably spend another year or so before this project reaches a somewhat finished stage.
+            </p>
+					</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+
+			<li class="single-project eleven">
+				<div class="cd-title">
+					<h2>Camelot.ai</h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+						<p>
+
+            https://camelot.ai/ - more content to come regarding results and code for different challenges that I compete in
+						</p>
+						<p>
+							Currently I am ranked in the top 20 of all users ranging from a few higschoolers to students of Harvard and MIT to employees of top investing companies, who typically sponsor the competitions.
+							I also placed in the top 5 out of over 80 individuals in a challenge sponsored by DRW.
+						</p>
+						<p>
+							My answers to the problems can be found on github
+						</p>
+						</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+
+			<li class="single-project twelve">
+				<div class="cd-title">
+					<h2> TBD </h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+            <p>
+              Keep an eye out for an upcoming project in this category!
+            </p>
+					</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+		</ul>
+	</div> <!-- .cd-projects-container -->
+	<center>
+			<div class = "jv" id = "jv"></div>
+	</center>
+	<script type="text/javascript">
+	<!--
+	var m = "This page was last updated: " + document.lastModified;
+	var p = m.length-8;
+	document.getElementById("jv").innerHTML = m.substring(p, 0);
+	 -->
+	</script>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+</script>
+</body>
+</html>

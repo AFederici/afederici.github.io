@@ -1,13 +1,16 @@
 // colors
-$color-1: #43202f; // Livid Brown
-$color-2: #72a987; // Bay Leaf
-$color-3: #edeade; // Pearl Bush
+
+$color-1: #2978A0; // Jelly Bean
+$color-2: #315659; // Spectra
+$color-3: #BCAB79; // Gimblet
+$color-4: #253031; // Outer Space
+$color-5: #FFFFFF; // White
 
 // fonts 
-$heading: 'Lora', serif;
 
-// Parallelepiped size
-$parallelepiped-width: 100vw;
+$primary-font: sans-serif;
+$secondary-font: 'Playfair Display', serif;
 
-// Animations
-$open-animation: .6s;
+//number of projects
+
+$items: 3;

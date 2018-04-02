@@ -57,68 +57,65 @@ $email = "";
 
  ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta name="author" content="Alexander(AJ) Federici">
 	<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
-	<script src="js/modernizr.js"></script>
+
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700italic,700' rel='stylesheet' type='text/css'>
+
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<link href="https://fonts.googleapis.com/css?family=Lora:400,700" rel="stylesheet">
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 
 	<title>Personal Website</title>
 </head>
 <body>
-<div class="cd-3d-portfolio">
-	<nav class="cd-3d-portfolio-navigation">
-		<div class="cd-wrapper">
-			<h1 class = "pseudolink" onclick="location='home.html'">Back to My Cover Site</h1>
-			<ul>
-				<li><a href="#0" class="selected">About Me</a></li>
-				<li><a href="#0">Fun Projects</a></li>
-				<li><a href="#0">ML Projects</a></li>
-				<li><a href="#0">Finance Projects</a></li>
-			</ul>
+	<header>
+		<a href="#0" class="cd-logo"><img src="img/logo6.jpg"></a>
 
-										<?php if($msg == "Your email has been sent"): ?>
-											 <center>
-											 <br>
-									 	<div class = "alert2 <?php echo $msgClass; ?>">
+		<button class="cd-nav-trigger">Menu<span aria-hidden="true" class="cd-icon"></span></button>
+	</header>
 
-										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-										<?php echo $msg; ?></div>
-										</center>
+	<nav class="cd-primary-nav">
+		<ul>
+			<?php if($msg == "Your email has been sent"): ?>
+				 <center>
+				 <br>
+			<div class = "alert2 <?php echo $msgClass; ?>"><?php echo $msg; ?></div>
+			</center>
+			<?php elseif($msg == "none"): ?>
 
-										<?php elseif($msg == "none"): ?>
+			<?php elseif($msg != ''): ?>
+				 <center>
+				 <br>
+			<div class = "alert <?php echo $msgClass; ?>" ><?php echo $msg; ?></div>
+			</center>
 
-										<?php elseif($msg != ''): ?>
-											 <center>
-											 <br>
-									 	<div class = "alert <?php echo $msgClass; ?>">
+			<?php endif; ?>
+			<li class="cd-label" onclick="location='home.html'">BACK HOME</li>
+			<li><a href="index.html" class = "selected">About Me</a></li>
+			<li><a href="fun.html">Fun Projects</a></li>
+			<li><a href="ml.html">ML Projects</a></li>
+			<li><a href="financeproj.html">Finance Projects</a></li>
+		</ul>
+	</nav> <!-- .cd-primary-nav -->
 
-										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-										<?php echo $msg; ?></div>
-										</center>
-										<?php endif; ?>
-		</div>
-	</nav> <!-- .cd-3d-portfolio-navigation -->
+	<div class="cd-projects-container">
 
-	<div class="projects">
-		<ul class="row">
-			<li class="front-face selected project-1">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>About Me</h2>
-						</div>
-					</div> <!-- .project-image -->
 
-					<div class="project-content">
-						<div>
-						<br>
-						<br>
+		<ul>
+			<li class="single-project one">
+				<div class="cd-title">
+					<h2>About Me</h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
 							<p>
 								Hey! My name is AJ Federici and this is the fun part of my website where I intend to showcase different projects that I am working on.
 							</p>
@@ -131,7 +128,7 @@ $email = "";
 							<p>Computation Finance:</p>
 							<p>
 							This school year I have been interning at TransMarket Group, a proprietary trading firm based in Chicago for about 8 hours every week.  Here I work on many small projects in python ranging from database manipulation to data analytics.  As far as personal projects go, I have a huge fan of cryptocurrency which meets at the roads of finance, crpytography, and computer science.  While it is a recent fad, I have been interested and involved since 2016 (the boom where popularity skyrocketed was the end of 2017).  So, I am working on a simple bot that will trade crpytocurrency based on analytics and algorithms.
-						  </p>
+							</p>
 							<hr>
 							<p>Cryptography and cyber-security: </p>
 							<p>
@@ -146,523 +143,72 @@ $email = "";
 							</p>
 							<br>
 							<br>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-
-			<li class="right-face project-2">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>Double Pendulum</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<div>
-							<canvas id = "gc2" width = "600" height = "600" style = "border: 1px solid gray; width: 600px; height: 600px; z-index: 0"></canvas>
-							<canvas id = "gc" width = "600" height = "600" style = "border: 1px solid gray; width: 600px; height: 600px; z-index: 1"></canvas>
-
-							<script>
-							 var m1 = 10;
-							 var m2 = 10;
-							 var r1 = 100;
-							 var r2 = 100;
-							 var x0 = y0 = 0;
-							 var a1 = Math.PI / 2;
-							 var a2 = Math.PI / 2;
-							 var a1_v = 0;
-							 var a2_v = 0;
-							 var a1_a = 0;
-							 var a2_a = 0;
-							 var x1 = 0;
-							 var y1 = 0;
-							 var x2 = 0;
-							 var y2 = 0;
-							 var previous_x2 = 0;
-							 var previous_y2 = 0;
-							 var counter = 0;
-							 var g = 1;
-							 var myVar;
-							 var canvas = document.getElementById("gc");
-							 var ctx = canvas.getContext("2d");
-							 var canvas2 = document.getElementById("gc2"); // everything with lines after comment out to change style
-							 var ctx2 = canvas2.getContext("2d");  //
-
-							 ctx.translate(300,80);
-							 ctx2.translate(300,80);
-
-							function init(){
-
-							}
-
-							 function info(){
-							   rounded = a1.toFixed(2);
-							   rounded2 = a2.toFixed(2);
-								 v_rounded = a1_v.toFixed(2);
-								 v_rounded2 = a2_v.toFixed(2);
-							   document.getElementById("info").innerHTML = "Mass 1: " + m1 + " kg " + "<br />" + "Mass 2: " + m2 + " kg <br />" + "Velocity 1: " + v_rounded + " m/s " + "<br />" + "Velocity 2: " + v_rounded2 + " m/s <br />" +  "Radius 1: " + r1 + " m <br />" +  "Radius 2: " + r2 + " m <br />" + "Angle 1: " + rounded + " radians <br />" +  "Angle 2: " + rounded2 + "radians \n" ;
-							 }
-							 function setTimer(){
-							   myVar = setInterval(function(){ draw() }, 15);
-							 }
-
-							 function clearTimer(){
-							   clearInterval(myVar);
-							 }
-							 function varUpdate() {
-							   x1 = r1 * Math.sin(a1);
-							   y1 = r1 * Math.cos(a1);
-							   x2 = x1 + r2 * Math.sin(a2);
-							   y2 = y1 + r2 * Math.cos(a2);
-							   numerator1 = -1 * g * (2 * m1 + m2) * Math.sin(a1) - m2 * g * Math.sin(a1 - 2 * a2) - 2*Math.sin(a1 - a2) * m2 * (a2_v * a2_v * r2 + a1_v*a1_v * r1 * Math.cos(a1-a2));
-							   denominator1 = r1 * (2*m1 + m2 - m2 * Math.cos(2*a1 - 2*a2));
-							   numerator2 = 2 * Math.sin(a1 - a2) * (a1_v * a1_v * r1 * (m1 + m2) + g * (m1 + m2) * Math.cos(a1) + a2_v * a2_v * r2 * m2 * Math.cos(a1 - a2));
-							   denominator2 = r2 * (2*m1 + m2 - m2 * Math.cos(2*a1 - 2*a2));
-							   a1_a = (numerator1) / (denominator1);
-							   a2_a = (numerator2) / (denominator2)
-							 }
-
-							 function drawLines() {
-							   ctx.clearRect(-300, -80, 600, 520);
-							   varUpdate();
-							   //these included you see the balls on black, without its balls and you see the paths
-							   ctx.fillStyle = "rgba(0,0,0,0.1)";
-							   ctx.fillRect(-300, -80, 600, 800);
-							   //ctx.clearRect(-300, -80, 600, 520);v
-
-							   ctx.fillStyle = "rgba(255,0,0,.9)";
-							   ctx.beginPath();
-							   ctx.lineWidth = (3);
-							   ctx.moveTo(x0, y0);
-							   ctx.lineTo(x1,y1);
-							   ctx.fillStyle = "rgba(255, 0, 0,0.9)";
-							   ctx.stroke();
-							   ctx.closePath();
-
-							   ctx.beginPath();
-							   ctx.lineWidth = (3);
-							   ctx.moveTo(x1, y1);
-							   ctx.lineTo(x2,y2);
-							   ctx.fillStyle = "rgba(255,0,0,0.9)";
-							   ctx.stroke();
-							   ctx.closePath();
-							}
-
-							function drawBalls(){
-							   ctx.beginPath();
-							   ctx.fillStyle = "rgba(255,0,0,0.9)";
-							   ctx.arc(x1,y1,m1,0,2*Math.PI);
-							   ctx.fill();
-							   ctx.stroke();
-							   ctx.closePath();
-
-							   ctx.beginPath();
-							   ctx.arc(x2,y2,m2,0,2*Math.PI);
-							   ctx.fillStyle = "rgba(255,0 ,0,0.8)";
-							   ctx.fill();
-							   ctx.stroke();
-							   ctx.closePath();
-							}
-
-							function drawPoint() {
-							  ctx2.beginPath();
-								ctx2.lineWidth = (3);
-							  //ctx2.arc(x2,y2,1,0,2*Math.PI);
-							  //ctx2.fillStyle = "rgba(255,255 ,0,0.8)";
-								var cr = 'rgb('+ Math.floor(Math.random()*256)+','+ Math.floor(Math.random()*256)+','+ Math.floor(Math.random()*256)+')';
-								ctx2.strokeStyle = cr;
-							  ctx2.moveTo(previous_x2, previous_y2);
-							  ctx2.lineTo(x2,y2);
-							  //ctx2.fill();
-							  ctx2.stroke();
-							  ctx2.closePath();
-							}
-
-							function draw() {
-							   drawLines();
-							   drawBalls();
-							   //if (counter % 2 == 0){ // this can be used for spaced out points
-							   //  drawPoint();
-							   //}
-							   if ( counter > 0 && counter % 2 == 0 ){
-							     drawPoint();
-							   }
-							   previous_x2 = x2;
-							   previous_y2 = y2;
-							   a1_v += a1_a;
-							   a2_v += a2_a;
-							   a1 += a1_v;
-							   a2 += a2_v;
-
-							   //a1_v *= 0.998; //dampening
-							   //a2_v *= 0.999;
-							   //a1 += 1;
-							   //a2 -= 2;
-							   counter += 1;
-							}
-							</script>
-							</div>
-
-							<button class = "canvas-like1" style="position: absolute; " onclick="setTimer()">Start</button>
-							<button class = "canvas-like2" style="position: absolute;" onclick="clearTimer()">Stop</button>
-							<button class = "canvas-like3" id = "info" style="position: absolute; " onclick="info()">Information</button>
-							<div class = "canvas-text">
-								<br /><br /><br />
-							<p>
-								Above is my double Pendulum, and the code for which can be found on my GitHub under my personal-website repository.  I coded it in Javascript as a fun project because I found the path of it to look really awesome and wanted to experiment with it and let others too!  I am working towards making it customizable, but currently, the "stats" button can be clicked at any time during the animation to give the current value such as the angles each arm of the pendulum is at and what their respective velocities are.
-							</p>
-							<br /><br />
-							</div>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-
-			<li class="right-face project-3">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>Facial Recognition</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<p>
-								During the summer before my senior year in highschool, I worked on a capstone project at MIT for the Amazon Alexa, implementing Neural networks for facial recognition, voice recognition, and natural language processing.  The slightly unfinished project
-								can be found under my GitHub under the title numberWon.  This section is going to be dedicated to the facial recognition portion.
-							</p>
-							<hr />
-							<p>
-								<img src = "img/facerec1.png" />
-							</p>
-							<p>
-								As you can tell from the code above, I am creating objects of both the FaceRec and Database classes.  The Database class is simply just an implementation of dictionaries in a way that they can be stored, accessed, and saved in a wide array of formats.  For example, data about images, the images themselves, and even objects get stored in the database across all of the different projects from Facial Recognition to a reddit news scraper.
-								The FaceRec class is more complicated and relies on pretrained models (dlib) for feature detection.  Throughout my time on the project I wrote many neural networks, but I chose to go with a library for my final project just because it simply would've taken to long to go from a 2/3 layer NN to a 20+ layer one.  On top of this, it requires an abundance of data (faces), which I did not have access to.
-
-								Now, to get into what is happening in the screenshot above.  The database starts as empty since no pre-existing one gets loaded in, and so when the function name_faces_from_picture gets called, it finds all of the faces in the current picture and sets their names and data as new values.  As you can see, it recognized that a face was present but asked for my name since it couldn't find any information on me in the database.  Furthermore, the 1 that gets printed out is the smallst euclidean distance between the face found and any other faces stored.  1 is the default value, and so it makes sense that it was returned as there were no faces in the database to be compared to. If the database was pre-loaded in, it would try to match any found faces to pre-exisitng ones, which we see in the next screenshot.
-							</p>
-							<hr />
-							<p>
-								<img src = "img/facerec2.png" />
-							</p>
 							<br />
-							<p>
-								Now, after we run the same code again, there is a face stored in the database from already running the code once.  This time, the program recognized who I am from the previous data it has on me.  This is possible by taking the smallest euclidean distance between the important features of a picture (eyes, nose, mouth) less than a certain threshold so that two faces don't automatically match if they are the only two available.
-								This program works even when its dark!
-							</p>
-
-							<hr />
-							<p>
-								<img src = "img/whispers.png" />
-							</p>
-							<p>
-
-								Finally, sort of in a different direction is an algorithm known as the 'whispers' or 'chinese-whispers' program that is useful for clustering.  This is extremely useful and can be seen as a current application within the field of facial recognition.  On the iphone, the photos app sorts photos by who is in them, which is essentially what running a whispers algorithm on image data will return.
-								The premise of this algorithm is two cluster data into distinct groups.  Each image in our case can be thought of a node, or a point in space.  Each point is connected to specific other points (not all!) based on a euclidean distance thats within a certain threshold.  Then, nodes are randomly chosen and its weighted edges are added up.  Instead of counting up how many of each other kind of node the node in question is attached to, we will count up some sort of weighted value for each kind of node based on proximity.  In other words, if the node in question is very close to two nodes of one kind, and further from two nodes of another kind but still connected, the node in question will be more similar to the first group.  Then, the node will then become a part of the group it is most similar to and this process will continue until the number of groups converges, resulting in the truly distinctive groupings.  Above is a visiaulization of sorts.
-							</p>
-
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
+					</div>
+				</div> <!-- .cd-project-info -->
 			</li>
 
-			<li class="right-face project-4">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>Trading Bot</h2>
-						</div>
-					</div> <!-- .project-image -->
+			<li class="single-project two">
+				<div class="cd-title">
+					<h2>Contact Me</h2>
+				</div> <!-- .cd-title -->
 
-					<div class="project-content">
-						<div>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
 
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius ea sequi distinctio autem repellat, libero esse nam. Quam nesciunt nobis iure cupiditate neque hic magnam optio assumenda unde sequi. Rem cumque iure cum reprehenderit repellendus, autem voluptates maxime ipsa numquam libero nobis saepe laudantium amet praesentium voluptatibus, fuga eveniet.
-							</p>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-		</ul> <!-- .row -->
-
-		<ul class="row">
-			<li class="front-face selected project-5">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>Contact Me</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<p>
-								<br />
-								Feel free to contact me using this form whether it is to give feedback on the site or to just reach out to me!  You can also visit any on my media pages linked on my home page (GitHub, LinkedIn, Facebook)
-								<br />
-							</p>
-							<p>
-							<center>
-							<form class = "contact-form" action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
-								<input type = "text" name = "name" placeholder="Full Name" value = "<?php echo htmlspecialchars($name); ?>"/>
-								<input type = "text" name = "email" placeholder="Your E-mail" value = "<?php echo htmlspecialchars($email); ?>"/>
-								<input type = "text" name = "subj" placeholder="Subject" value = "<?php echo htmlspecialchars($subj); ?>"/>
-								<textarea name="message" rows="8" cols="80" placeholder = "Enter your message here" value = "<?php echo htmlspecialchars($message); ?>"></textarea>
-								<br />
-								<button type="submit" name = "submit" class = "button-blue button-extra"> SEND </button>
-							</form>
-							</center>
-						</p>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-
-			<li class="right-face project-6">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>Vinegre Cipher</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<p>
-
-								<!-- .***Next task is to finish up descritption for the vinegre cipher section -->
-								While studying crpytography in a number theory course, I became interested in crpytography.  It is an extremely useful tool for encoding things - that is why cryptography comes to play in cybersecurity and cryptocurrencys.
-
-							<p>
-								The vinegre cipher, a more complex variant of the caesar cipher, is by no means secure but made for a good project.  The idea behind certain ciphers is to interfere with frequency analysis, which at its base level, can never be avoided unless the language is made up.
-							</p>
-
-							<p>
-								My project, on GitHub as vinegre-cipher, was written in C++ with the idea that a brute force attack would be faster in a lower level language.  So, it of course has the basic functionality of takin a text file or a string and encoding it or decoding it given a keyword.  The more interestng part, however, is decryption without a given key.
-							</p>
-							<p>
-
-								First, I looked at spacing between collections of letters.  Specifically, I searched the encrypted message for sequential letters that appeared multiple times throughout in the same order.  I ran this for sequences of letters of length 2,3,4,5, and so on, also known as n-grams.  Once I found the spacings, I would take the greatest common denominator of them since the spacing could be any multiple of what the actual key length is.
-							</p>
-
-							<p>
-
-								One problem of using a GCD is that it may simplify too much.  If the key length is say for, the gcd would always return two.  So, my program takes multiples of the gcd to determine possible key lengths.
-							</p>
-							<p>
-								Finally, with possible key lengths, my program compares all the newly found key lengths, and all the possible shifts ('a' - 'z'), for each index individually with the frequency analysis of leters in the english language.  My program also outputs the top two results for each index of the word as frequency analysis isn't perfect, especially with shorter messages.
-								Below is an example with screenshots of the inputs and command line outputs of my program encrpyting and then decrpyting the message without giving the program the key.
-							</p>
-							<div>
-							<p><img src = "img/code for encrypting.png" /></p>
-							<p>
-							Program strips punctuation and spacing and shifts all letters to lowercase.  Snippets of the text and its encryption are shown below.
-							</p>
-							</div>
+					<div class="content-wrapper">
 						<p>
-
-							<img src = "img/encrypt the text.png" />
-							</p>
-							<div>
-
-							<p><img src = "img/result of solver.png" /></p>
-							<p>
-							Upon running the programs solver, the program decided that the key length is a multiple of two and tried various ones (2,4,6, and 8).
-							As you can see, there are two columns of letters; frequency analysis isn't perfect and so the program gives two options for each index.
-							</p>
-							</div>
-							<div>
-							<p><img src = "img/decryption.png"/></p>
-							<p>
-							Using the key highlighted above, we run our decrypt function and our progam outputs the original text!
-							</p>
-							</div>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
+							Feel free to contact me using this form whether it is to give feedback on the site or to just reach out to me!  You can also visit any on my media pages linked on my home page (GitHub, LinkedIn, Facebook)
+							<br />
+							<br />
+						</p>
+						<p>
+						<center>
+						<form class = "contact-form" action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
+							<input type = "text" name = "name" placeholder="Full Name" value = "<?php echo htmlspecialchars($name); ?>"/>
+							<input type = "text" name = "email" placeholder="Your E-mail" value = "<?php echo htmlspecialchars($email); ?>"/>
+							<input type = "text" name = "subj" placeholder="Subject" value = "<?php echo htmlspecialchars($subj); ?>"/>
+							<textarea name="message" rows="8" cols="80" placeholder = "Enter your message here" value = "<?php echo htmlspecialchars($message); ?>"></textarea>
+							<br />
+							<button type="submit" name = "submit" class = "button-blue button-extra"> SEND </button>
+						</form>
+						</center>
+					</p>
+					</div>
+				</div> <!-- .cd-project-info -->
 			</li>
 
-			<li class="right-face project-7">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>Tower Defense AI</h2>
-						</div>
-					</div> <!-- .project-image -->
+			<li class="single-project three">
+				<div class="cd-title">
+					<h2> Résumé </h2>
+				</div> <!-- .cd-title -->
 
-					<div class="project-content">
-						<div>
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
 
-							<!-- .***Next task is to write a description of beaverwrks project (NumberOne) -->
+					<div class="content-wrapper">
 
 
-							<p>
-									My goal for this upcoming project is to write an AI to master not any old game, but a Tower Defense game that I am currently a part of a team of developers for making.  However the game itself is still in its earlier stages and so this project will most likely not take fruition for a while to come.
+													<p>
 
-							</p>
-						</div>
-					</div> <!-- .project-content -->
+														My Resume was written halfway through my senior year in highschool and will likely be updated again before I begin my first year in college. If you have any questions feel free to reach out to me via the contact me page or through any of my media links on my home page.
+													</p>
 
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
+													<p>
+														My Resume is currently catered towards what I have done in terms of CS.  Not listed are all of my projects, some of the service I have done such as acting as a residential assistant with over 150 logged hours and tutoring underpriveledged kids for around 50 hours.
+														Class I have taken include Calculus (including Multivariable), Linear Algebra, Discrete Math, Number Theory, AP CS, Object Orientated Programming, and computational science.
+														<br />
+														<br />
+														<a href = "img/FedericiResume.pdf" download>
+															<button type="button" class = "button-blue"> Download Resume</button>
+														</a>
+													</p>
+
+					</div>
+				</div> <!-- .cd-project-info -->
 			</li>
-
-			<li class="right-face project-8">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>Camelot.ai</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<p>
-								https://camelot.ai/ - more content to come regarding results and code for different challenges that I compete in
-							</p>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-		</ul> <!-- .row -->
-
-		<ul class="row">
-			<li class="front-face selected project-9">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2> Résumé </h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-
-
-							<p>
-
-								My Resume was written halfway through my senior year in highschool and will likely be updated again before I begin my first year in college. If you have any questions feel free to reach out to me via the contact me page or through any of my media links on my home page.
-							</p>
-
-							<p>
-								My Resume is currently catered towards what I have done in terms of CS.  Not listed are all of my projects, some of the service I have done such as acting as a residential assistant with over 150 logged hours and tutoring underpriveledged kids for around 50 hours.
-								Class I have taken include Calculus (including Multivariable), Linear Algebra, Discrete Math, Number Theory, AP CS, Object Orientated Programming, and computational science.
-								<br />
-								<br />
-								<a href = "img/FedericiResume.pdf" download>
-									<button type="button" class = "button-blue"> Download Resume</button>
-								</a>
-							</p>
-
-
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-
-			<li class="right-face project-10">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>TBD</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<p>
-								Keep an eye out for an upcoming project in this category!
-							</p>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-
-			<li class="right-face project-11">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>TBD</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<p>
-								Keep an eye out for an upcoming project in this category!
-							</p>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-
-			<li class="right-face project-12">
-				<div class="project-wrapper">
-					<div class="project-image">
-						<div class="project-title">
-							<h2>TBD</h2>
-						</div>
-					</div> <!-- .project-image -->
-
-					<div class="project-content">
-						<div>
-							<p>
-								Keep an eye out for an upcoming project in this category!
-							</p>
-						</div>
-					</div> <!-- .project-content -->
-
-					<a href="#0" class="close-project">Close</a>
-				</div> <!-- .project-wrapper -->
-			</li>
-		</ul> <!-- .row -->
-	</div><!-- .projects -->
-
-	<a href="#0" class="cd-top">Top</a>
+		</ul>
+	</div> <!-- .cd-projects-container -->
 	<center>
 			<div class = "jv" id = "jv"></div>
 	</center>
@@ -673,14 +219,7 @@ $email = "";
 	document.getElementById("jv").innerHTML = m.substring(p, 0);
 	 -->
 	</script>
-</div>
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script>
-	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
-</script>
+<script src="js/jquery-2.1.4.js"></script>
 <script src="js/main.js"></script> <!-- Resource jQuery -->
 </body>
 </html>
