@@ -96,7 +96,7 @@ $email = "";
 
 			<?php endif; ?>
 			<li class="cd-label" onclick="location='home.html'">BACK HOME</li>
-			<li><a href="index.html" class = "selected">About Me</a></li>
+			<li><a href="index.php" class = "selected">About Me</a></li>
 			<li><a href="fun.html">Fun Projects</a></li>
 			<li><a href="ml.html">ML Projects</a></li>
 			<li><a href="financeproj.html">Finance Projects</a></li>
