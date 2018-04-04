@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="author" content="Alexander(AJ) Federici">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
 
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700italic,700' rel='stylesheet' type='text/css'>
@@ -48,9 +49,11 @@
               can be found under my GitHub under the title numberWon.  This section is going to be dedicated to the facial recognition portion.
             </p>
             <hr />
+            <center>
             <p>
-              <img src = "img/facerec1.png" />
+              <img src = "img/facerec1.PNG" />
             </p>
+            </center>
             <p>
               As you can tell from the code above, I am creating objects of both the FaceRec and Database classes.  The Database class is simply just an implementation of dictionaries in a way that they can be stored, accessed, and saved in a wide array of formats.  For example, data about images, the images themselves, and even objects get stored in the database across all of the different projects from Facial Recognition to a reddit news scraper.
               The FaceRec class is more complicated and relies on pretrained models (dlib) for feature detection.  Throughout my time on the project I wrote many neural networks, but I chose to go with a library for my final project just because it simply would've taken to long to go from a 2/3 layer NN to a 20+ layer one.  On top of this, it requires an abundance of data (faces), which I did not have access to.
@@ -58,9 +61,11 @@
               Now, to get into what is happening in the screenshot above.  The database starts as empty since no pre-existing one gets loaded in, and so when the function name_faces_from_picture gets called, it finds all of the faces in the current picture and sets their names and data as new values.  As you can see, it recognized that a face was present but asked for my name since it couldn't find any information on me in the database.  Furthermore, the 1 that gets printed out is the smallst euclidean distance between the face found and any other faces stored.  1 is the default value, and so it makes sense that it was returned as there were no faces in the database to be compared to. If the database was pre-loaded in, it would try to match any found faces to pre-exisitng ones, which we see in the next screenshot.
             </p>
             <hr />
+            <center>
             <p>
-              <img src = "img/facerec2.png" />
+              <img src = "img/facerec2.PNG" />
             </p>
+       	    </center>
             <br />
             <p>
               Now, after we run the same code again, there is a face stored in the database from already running the code once.  This time, the program recognized who I am from the previous data it has on me.  This is possible by taking the smallest euclidean distance between the important features of a picture (eyes, nose, mouth) less than a certain threshold so that two faces don't automatically match if they are the only two available.
@@ -68,9 +73,11 @@
             </p>
 
             <hr />
+            <center>
             <p>
-              <img src = "img/whispers.png" />
+              <img src = "img/whispers.PNG" />
             </p>
+        	</center>
             <p>
 
               Finally, sort of in a different direction is an algorithm known as the 'whispers' or 'chinese-whispers' program that is useful for clustering.  This is extremely useful and can be seen as a current application within the field of facial recognition.  On the iphone, the photos app sorts photos by who is in them, which is essentially what running a whispers algorithm on image data will return.
@@ -108,6 +115,7 @@
 					<div class="content-wrapper">
             <p>
               Keep an eye out for an upcoming project in this category!
+              <br>
             </p>
 					</div>
 				</div> <!-- .cd-project-info -->

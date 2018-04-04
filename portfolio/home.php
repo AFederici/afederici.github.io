@@ -62,6 +62,7 @@ $email = "";
 <head>
 	<meta charset="UTF-8">
 	<meta name="author" content="Alexander(AJ) Federici">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
 
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700italic,700' rel='stylesheet' type='text/css'>
@@ -116,6 +117,7 @@ $email = "";
 					<button class="cd-scroll">Scroll down</button>
 
 					<div class="content-wrapper">
+<center><p><h2 style="color:red"> VERSION 1.0 - SITE STILL UNDER CONTSTRUCTION </h2></p></center>
 							<p>
 								Hey! My name is AJ Federici and this is the fun part of my website where I intend to showcase different projects that I am working on.
 							</p>

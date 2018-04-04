@@ -51,9 +51,10 @@ button {
 }
 
 hr {
+  position: relative;
   width: 95%;
   max-width: 800px;
-}
+} .pseudolink2 {cursor: pointer; color: blue;}
 
 .form-thing{
   opacity: 0;
@@ -62,7 +63,7 @@ hr {
           transform: translateX(25%);
   -webkit-transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1);
   transition: all 0.6s cubic-bezier(0.5, 0, 0.1, 1);
-}
+}s
 
 /* The alert message box */
 .alert {
@@ -259,10 +260,10 @@ canvas {
   /* Use calc to make sure that browser without transform support
    * (that therefore also dont support calc) don't
    * actually move your elements. */
-  left: calc(20.2%);
-  top: calc(8%);
+   left: calc(20.2%);
+   top: calc(8%);
   /* Don't forget to prefix. */
-  transform: translate(-220%, -114%);
+   transform: translate(-220%, -200%);
 }
 
 .canvas-like2{
@@ -273,7 +274,7 @@ canvas {
   left: calc(28.2%);
   top: calc(8%);
   /* Don't forget to prefix. */
-  transform: translate(-180%, -114%);
+  transform: translate(-180%, -200%);
 }
 
 .canvas-like3{
@@ -284,7 +285,7 @@ canvas {
   left: calc(78.2%);
   top: calc(8%);
   /* Don't forget to prefix. */
-  transform: translate(-50%, -114%);
+  transform: translate(-50%, -200%);
 }
 
 .canvas-text{
@@ -813,11 +814,13 @@ End Extra
   background-color: #FFFFFF;
 }
 .cd-project-info .content-wrapper > * {
-  width: 90%;
+  position: relative;
+  width: 70%;
   margin: 0 auto;
   color: #253031;
 }
 .cd-project-info .content-wrapper p {
+  position: relative;
   width: 70%;
   margin: 1em auto;
   line-height: 1.6;
