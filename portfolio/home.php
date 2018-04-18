@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 //check for submit
 $msg = "none";
@@ -127,7 +127,7 @@ $email = "";
 								Computer science is my main passion - there are tons of sub-categories and uses for tools in cs that have caught my interest!
 							</p>
 							<hr>
-							<p>Computation Finance:</p>
+							<p>Computational Finance:</p>
 							<p>
 							This school year I have been interning at TransMarket Group, a proprietary trading firm based in Chicago for about 8 hours every week.  Here I work on many small projects in python ranging from database manipulation to data analytics.  As far as personal projects go, I have a huge fan of cryptocurrency which meets at the roads of finance, crpytography, and computer science.  While it is a recent fad, I have been interested and involved since 2016 (the boom where popularity skyrocketed was the end of 2017).  So, I am working on a simple bot that will trade crpytocurrency based on analytics and algorithms.
 							</p>
@@ -201,7 +201,7 @@ $email = "";
 														Class I have taken include Calculus (including Multivariable), Linear Algebra, Discrete Math, Number Theory, AP CS, Object Orientated Programming, and computational science.
 														<br />
 														<br />
-														<a href = "img/FedericiResume.pdf" target="_blank">
+														<a href = "img/FEDERICI-RESUME-18.pdf" target="_blank">
 															<button type="button" class = "button-blue"> View Resume</button>
 														</a>
 													</p>
