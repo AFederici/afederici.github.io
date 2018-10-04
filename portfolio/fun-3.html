@@ -1,0 +1,331 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Alexander(AJ) Federici">
+	<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700italic,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+
+	<title>Personal Website</title>
+</head>
+<body>
+	<header>
+		<a href="#0" class="cd-logo"><img src="img/logo6.jpg"></a>
+
+		<button class="cd-nav-trigger">Menu<span aria-hidden="true" class="cd-icon"></span></button>
+	</header>
+
+	<nav class="cd-primary-nav">
+		<ul>
+			<li class="cd-label" onclick="location='index.html'">BACK HOME</li>
+			<li><a href="home.php">About Me</a></li>
+			<li><a href="fun.html" class = "selected">Fun Projects</a></li>
+			<li><a href="ml.html">ML Projects</a></li>
+			<li><a href="financeproj.html">Finance Projects</a></li>
+		</ul>
+	</nav> <!-- .cd-primary-nav -->
+
+	<div class="cd-projects-container">
+
+		<ul>
+			<li class="single-project four">
+				<div class="cd-title">
+					<h2>Double Pendulum</h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+            <p>
+
+            <canvas id = "gc2" width = "600" height = "600" style = "border: 1px solid gray; width: 600px; height: 600px; z-index: 0"></canvas>
+            <canvas id = "gc" width = "600" height = "600" style = "border: 1px solid gray; width: 600px; height: 600px; z-index: 1"></canvas>
+
+            <script>
+             var m1 = 10;
+             var m2 = 10;
+             var r1 = 100;
+             var r2 = 100;
+             var x0 = y0 = 0;
+             var a1 = Math.PI / 2;
+             var a2 = Math.PI / 2;
+             var a1_v = 0;
+             var a2_v = 0;
+             var a1_a = 0;
+             var a2_a = 0;
+             var x1 = 0;
+             var y1 = 0;
+             var x2 = 0;
+             var y2 = 0;
+             var previous_x2 = 0;
+             var previous_y2 = 0;
+             var counter = 0;
+             var g = 1;
+             var myVar;
+             var canvas = document.getElementById("gc");
+             var ctx = canvas.getContext("2d");
+             var canvas2 = document.getElementById("gc2"); // everything with lines after comment out to change style
+             var ctx2 = canvas2.getContext("2d");  //
+
+             ctx.translate(300,120);
+             ctx2.translate(300,120);
+
+            function init(){
+
+            }
+
+             function info(){
+               rounded = a1.toFixed(2);
+               rounded2 = a2.toFixed(2);
+               v_rounded = a1_v.toFixed(2);
+               v_rounded2 = a2_v.toFixed(2);
+               document.getElementById("info").innerHTML = "Mass 1: " + m1 + " kg " + "<br />" + "Mass 2: " + m2 + " kg <br />" + "Velocity 1: " + v_rounded + " m/s " + "<br />" + "Velocity 2: " + v_rounded2 + " m/s <br />" +  "Radius 1: " + r1 + " m <br />" +  "Radius 2: " + r2 + " m <br />" + "Angle 1: " + rounded + " radians <br />" +  "Angle 2: " + rounded2 + "radians \n" ;
+             }
+             function setTimer(){
+               myVar = setInterval(function(){ draw() }, 15);
+             }
+
+             function clearTimer(){
+               clearInterval(myVar);
+             }
+             function varUpdate() {
+               x1 = r1 * Math.sin(a1);
+               y1 = r1 * Math.cos(a1);
+               x2 = x1 + r2 * Math.sin(a2);
+               y2 = y1 + r2 * Math.cos(a2);
+               numerator1 = -1 * g * (2 * m1 + m2) * Math.sin(a1) - m2 * g * Math.sin(a1 - 2 * a2) - 2*Math.sin(a1 - a2) * m2 * (a2_v * a2_v * r2 + a1_v*a1_v * r1 * Math.cos(a1-a2));
+               denominator1 = r1 * (2*m1 + m2 - m2 * Math.cos(2*a1 - 2*a2));
+               numerator2 = 2 * Math.sin(a1 - a2) * (a1_v * a1_v * r1 * (m1 + m2) + g * (m1 + m2) * Math.cos(a1) + a2_v * a2_v * r2 * m2 * Math.cos(a1 - a2));
+               denominator2 = r2 * (2*m1 + m2 - m2 * Math.cos(2*a1 - 2*a2));
+               a1_a = (numerator1) / (denominator1);
+               a2_a = (numerator2) / (denominator2)
+             }
+
+             function drawLines() {
+               //ctx.clearRect(-300, -80, 600, 520);
+               varUpdate();
+               //these included you see the balls on black, without its balls and you see the paths
+               ctx.fillStyle = "rgba(0,0,0,0.1)";
+               ctx.fillRect(-300, -120, 600, 800);
+               //ctx.clearRect(-300, -80, 600, 520);
+
+               ctx.fillStyle = "rgba(255,0,0,.9)";
+               ctx.beginPath();
+               ctx.lineWidth = (3);
+               ctx.moveTo(x0, y0);
+               ctx.lineTo(x1,y1);
+               ctx.fillStyle = "rgba(255, 0, 0,0.9)";
+               ctx.stroke();
+               ctx.closePath();
+
+               ctx.beginPath();
+               ctx.lineWidth = (3);
+               ctx.moveTo(x1, y1);
+               ctx.lineTo(x2,y2);
+               ctx.fillStyle = "rgba(255,0,0,0.9)";
+               ctx.stroke();
+               ctx.closePath();
+            }
+
+            function drawBalls(){
+               ctx.beginPath();
+               var cr = 'rgb('+ Math.floor(Math.random()*256)+','+ Math.floor(Math.random()*256)+','+ Math.floor(Math.random()*256) + ',';
+               ctx.fillStyle = cr + 0.9 + ')';
+               ctx.arc(x1,y1,m1,0,2*Math.PI);
+               ctx.fill();
+               ctx.stroke();
+               ctx.closePath();
+
+               ctx.beginPath();
+               ctx.arc(x2,y2,m2,0,2*Math.PI);
+               ctx.fillStyle =  cr + 0.8 + ')';
+               ctx.fill();
+               ctx.stroke();
+               ctx.closePath();
+            }
+
+            function drawPoint() {
+              ctx2.beginPath();
+              ctx2.lineWidth = (3);
+              //ctx2.arc(x2,y2,1,0,2*Math.PI);
+              //ctx2.fillStyle = "rgba(255,255 ,0,0.8)";
+              var cr = 'rgb('+ Math.floor(Math.random()*256)+','+ Math.floor(Math.random()*256)+','+ Math.floor(Math.random()*256)+')';
+              ctx2.strokeStyle = cr;
+              ctx2.moveTo(previous_x2, previous_y2);
+              ctx2.lineTo(x2,y2);
+              //ctx2.fill();
+              ctx2.stroke();
+              ctx2.closePath();
+            }
+
+            function draw() {
+               drawLines();
+               drawBalls();
+               //if (counter % 2 == 0){ // this can be used for spaced out points
+               //  drawPoint();
+               //}
+               if ( counter > 0 && counter % 2 == 0 ){
+                 drawPoint();
+               }
+               previous_x2 = x2;
+               previous_y2 = y2;
+               a1_v += a1_a;
+               a2_v += a2_a;
+               a1 += a1_v;
+               a2 += a2_v;
+
+               //a1_v *= 0.998; //dampening
+               //a2_v *= 0.999;
+               //a1 += 1;
+               //a2 -= 2;
+               counter += 1;
+            }
+            </script>
+
+            <button class = "canvas-like1" style="position: absolute; " onclick="setTimer()">Start</button>
+            <button class = "canvas-like2" style="position: absolute;" onclick="clearTimer()">Stop</button>
+            <button class = "canvas-like3" id = "info" style="position: absolute; " onclick="info()">Information</button>
+            <div class = "canvas-text">
+              <br /><br /><br />
+              </p>
+              <p><img src = "img/white.jpg" /></p>
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <p>
+              Above is my double Pendulum, and the code for which can be found on my GitHub under my personal-website repository.  I coded it in Javascript as a fun project because I found the path of it to look really awesome and wanted to experiment with it and let others too!  I am working towards making it customizable, but currently, the "stats" button can be clicked at any time during the animation to give the current value such as the angles each arm of the pendulum is at and what their respective velocities are.
+            </p>
+            <br /><br />
+          </div>
+					</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+
+			<li class="single-project five">
+				<div class="cd-title">
+					<h2>Vinegre Cipher</h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+            <p>
+
+              <!-- .***Next task is to finish up descritption for the vinegre cipher section -->
+              While studying crpytography in a number theory course, I became interested in crpytography.  It is an extremely useful tool for encoding things - that is why cryptography comes to play in cybersecurity and cryptocurrency.
+            </p>
+            <p>
+              The vinegre cipher, a more complex variant of the caesar cipher, is by no means secure but made for a good project.  The idea behind certain ciphers is to interfere with frequency analysis, which at its base level, can never be avoided unless the language is made up.
+            </p>
+
+            <p>
+              My project, on GitHub as vinegre-cipher, was written in C++ with the idea that a brute force attack would be faster in a lower level language.  So, it of course has the basic functionality of takin a text file or a string and encoding it or decoding it given a keyword.  The more interestng part, however, is decryption without a given key.
+            </p>
+            <p>
+
+              First, I looked at spacing between collections of letters.  Specifically, I searched the encrypted message for sequential letters that appeared multiple times throughout in the same order.  I ran this for sequences of letters of length 2,3,4,5, and so on, also known as n-grams.  Once I found the spacings, I would take the greatest common denominator of them since the spacing could be any multiple of what the actual key length is.
+            </p>
+
+            <p>
+
+              One problem of using a GCD is that it may simplify too much.  If the key length is say for, the gcd would always return two.  So, my program takes multiples of the gcd to determine possible key lengths.
+            </p>
+            <p>
+              Finally, with possible key lengths, my program compares all the newly found key lengths, and all the possible shifts ('a' - 'z'), for each index individually with the frequency analysis of leters in the english language.  My program also outputs the top two results for each index of the word as frequency analysis isn't perfect, especially with shorter messages.
+              Below is an example with screenshots of the inputs and command line outputs of my program encrpyting and then decrpyting the message without giving the program the key.
+            </p>
+            <div>
+            <center><p><img src = "img/code for encrypting.PNG" /></p></center>
+            <p>
+            Program strips punctuation and spacing and shifts all letters to lowercase.  Snippets of the text and its encryption are shown below.
+            </p>
+            </div>
+          <center><p>
+
+            <img src = "img/encrypt the text.PNG" />
+            </p></center>
+            <div>
+
+            <center><p><img src = "img/result of solver.PNG" /></p></center>
+            <p>
+            Upon running the programs solver, the program decided that the key length is a multiple of two and tried various ones (2,4,6, and 8).
+            As you can see, there are two columns of letters; frequency analysis isn't perfect and so the program gives two options for each index.
+            </p>
+            </div>
+            <div>
+            <center><p><img src = "img/decryption.PNG"/></p></center>
+            <p>
+            Using the key highlighted above, we run our decrypt function and our progam outputs the original text!
+            </p>
+            </div>
+					</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+
+			<li class="single-project six">
+				<div class="cd-title">
+					<h2> Chess Algorithm </h2>
+				</div> <!-- .cd-title -->
+
+				<div class="cd-project-info">
+					<button class="cd-scroll">Scroll down</button>
+
+					<div class="content-wrapper">
+            <p>
+              Towards the end of my time as a Teachin Assistant for an MIT program, a student asked me to mentor them in their captsone project: create an artificial intelligence for chess. They were aware of my background in chess and so I gladly accepted.  In order to give that student a jumping off point I spent that very night creating a somewhat simple yet effective chess algorithm.
+            </p>
+            
+            <P>
+                The complexity of chess comes in because of the exponential amount of possible game states.  The moves in a game can be represented by b^d where b are the amount of possibles moves on a given turn and d is the amount of turns played.  A brute force search would be very limited by this time complexity to where the optimal move could be found looking around 8 moves ahead. Now, this is still rather good performance but not good enough to completely be better than any human player.
+            </P>
+            
+            <p>
+                However, an alpha-beta pruning algorithm, which is a minimax tree search optimization, can reduce the search complexity of chess from b^d to around b^(d/2).  Essentially, if you were able to look 8 moves ahead, you can now look somewhere around 16 moves ahead, which is a serious performance boost.
+            </p>
+            
+            <p>
+                Take a look at this graphic.  It is incredibly informative, and I will try and break down what it means so that it is easier to digest.
+            </p>
+            <center><p><img src = "img/abprune.PNG" /></p></center>
+            
+            <p>
+                First off, the basic algorithm lying at the root of what we are trying to accomplish is just a simple tree iteration where you continue down the nodes until a node no longer has any children and then recursively make your way back up the tree.  You can see that each level of the tree alternates between min and max, which represents the two different players in chess.  If it is white's turn, they want to maximize their gain from that turn while black wants to make moves counter white, or minimize the score white can receive.  For example, if white makes a capture, white will have a large increase in score. Then for black's turn, black can minimize that score by capturing back (assuming that doesn't lead to an even worse position).  So, when we initialize the tree each node will start as empty except for the leaves.  Once the tree traversal reaches a leaf, you run an evaluation function on the game assuming that the moves associated with all the previous nodes have been made. Now, refering back to the graphic above, looking at the leftmost part of the tree (the tree traversal starts on the leftmost side because we are doing an in order traversal).  The player looking to maximize the score chooses three over two since that is bigger. This score now gets passed up as a new alpha and a new beta.  What these variables keep track of are global records of the best possible path for the minimizer (beta) and the best possible path for the maximizer (alpha) assuming that both players are making the best moves possible. So, after the maximizer chooses three, the minimizer knows that the best they can do is guaranteed to be three or less.  Additionally, at the level above that, the maximizer knows they can get at least three.  Because alpha and beta values get sent from the bottom up, if beta changes and becomes two, that will also get passed up to the alpha value telling the maximizer that they can get a score of AT LEAST two.
+            </p>
+            <p>
+                Where the optimization comes into play is where you see the branches that are labeled as cut.  Looking at the leftmost branch that was cut, the leaf directly to its left had a value of five. Because it is the maximizer's turn at this level, this value gets passed up such that the maximizer can get at least a score of five.  But, at the level above, the minimizer has kept track of the other nodes and knows that they can get a score of three, if not less. Because of this, the minimzer would never choose a move that corresponds to the tree where the maximizer can get at least 5 instead of only 3. Therefore, it doesn't even matter what the cut out leaf evaluated to.  While saving on this one move seems trivial, as the process continues, entire sections of the tree become irrelevant, greatly speeding up the algorithm.
+            </p>
+            
+            <p>
+                Now, there are many complexities such as having an uneven search depth for moves that correspond to captures and checks and creating better and better evaulation functions as well as adding in a lookup table for openings and endings.  For my purposes, I utilized my knowledge of chess to code in useful properties for my evaluation function such as pawn structure, control of the center, king safety, and the overall piece count in terms of points.  However, my student, lacking this chess knowledge embarked on creating a custom CNN for each piece that would pick the best square for that piece given a board as an input.  This technology is relatively complex, and so anything simple and easy to grasp unfortunately does not produce impressive results.  The paper that served as the basis for this continuation on the project only drew or lost to stockfish, which is closely related to the alpha-beta pruning code that I wrote up.
+            </p>
+					</div>
+				</div> <!-- .cd-project-info -->
+			</li>
+		</ul>
+	</div> <!-- .cd-projects-container -->
+	<center>
+			<div class = "jv" id = "jv"></div>
+	</center>
+	<script type="text/javascript">
+	<!--
+	var m = "This page was last updated: " + document.lastModified;
+	var p = m.length-8;
+	document.getElementById("jv").innerHTML = m.substring(p, 0);
+	 -->
+	</script>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+</script>
+</body>
+</html>
