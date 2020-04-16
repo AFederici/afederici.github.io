@@ -22,17 +22,12 @@
 	</header>
 
 	<nav class="cd-primary-nav">
-	<div class="box">
-      <img src="img/Senior 5.jpg" alt="" class="box-img">
-      <h1>AJ Federici</h1>
-      <h5>Student - Developer - Adventurer</h5>
-      <p>I am currently a senior at the Illinois Mathematics and Science Academy in Aurora, Illinois.  Next year I will be attending UIUC for Computer Science.  This is my personal website that I plan on using as a showcase for the various projects that I take on, ranging from machine learning to financial tools.</p>
-      <ul>
-        <li class = "fb"><a href="https://www.facebook.com/federiciaj"><i aria-hidden="true"><img src = "img/fb.png" ></i></a></li>
-        <li class = "gh"><a href="https://github.com/AFederici"><i aria-hidden="true"><img src = "img/git.png" ></i></a></li>
-        <li class = "li"><a href="https://www.linkedin.com/in/aj-federici-76b608152/"><i aria-hidden="true"><img src = "img/linkedin.png" ></i></a></li>
-      </ul>
-    </div>
+		<ul>
+ 			<li><a href="home.html" class = "selected">About Me</a></li>
+ 			<li><a href="fun.html">Fun Projects</a></li>
+ 			<li><a href="ml.html">ML Projects</a></li>
+ 			<li><a href="financeproj.html">Finance Projects</a></li>
+ 		</ul>
 	</nav> <!-- .cd-primary-nav -->
 
 	<div class="cd-projects-container">
@@ -91,22 +86,20 @@
 
 					<div class="content-wrapper">
 						<p>
-							Feel free to contact me using this form whether it is to give feedback on the site or to just reach out to me!  You can also visit any on my media pages linked on my home page (GitHub, LinkedIn, Facebook)
+							You can reach me on any of my media pages linked on my home page (GitHub, LinkedIn, Facebook)
 							<br />
 							<br />
 						</p>
+						
 						<p>
-						<center>
-						<form class = "contact-form" action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
-							<input type = "text" name = "name" placeholder="Full Name" value = "<?php echo htmlspecialchars($name); ?>"/>
-							<input type = "text" name = "email" placeholder="Your E-mail" value = "<?php echo htmlspecialchars($email); ?>"/>
-							<input type = "text" name = "subj" placeholder="Subject" value = "<?php echo htmlspecialchars($subj); ?>"/>
-							<textarea name="message" rows="8" cols="80" placeholder = "Enter your message here" value = "<?php echo htmlspecialchars($message); ?>"></textarea>
-							<br />
-							<button type="submit" name = "submit" class = "button-blue button-extra"> SEND </button>
-						</form>
-						</center>
-					</p>
+							<center>
+								<ul>
+						        <li class = "fb"><a href="https://www.facebook.com/federiciaj"><i aria-hidden="true"><img src = "img/fb.png" ></i></a></li>
+						        <li class = "gh"><a href="https://github.com/AFederici"><i aria-hidden="true"><img src = "img/git.png" ></i></a></li>
+						        <li class = "li"><a href="https://www.linkedin.com/in/aj-federici-76b608152/"><i aria-hidden="true"><img src = "img/linkedin.png" ></i></a></li>
+						      	</ul>
+							</center>
+						</p>
 					</div>
 				</div> <!-- .cd-project-info -->
 			</li>
